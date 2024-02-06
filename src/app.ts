@@ -1,6 +1,7 @@
 import { PropsWithChildren } from 'react'
 import Taro, { useLaunch } from '@tarojs/taro'
 import './app.scss'
+import '@nutui/nutui-react-taro/dist/style.css'
 
 function App({ children }: PropsWithChildren<any>) {
 
