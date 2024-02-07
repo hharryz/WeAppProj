@@ -1,10 +1,10 @@
+import { ConfigProvider, CalendarCard, Sticky, Button } from '@nutui/nutui-react-taro'
 import { View, Text } from '@tarojs/components'
 import Taro, { useLoad } from '@tarojs/taro'
-import './index.scss'
-import React, {useState} from 'react'
-import { ConfigProvider, CalendarCard } from '@nutui/nutui-react-taro'
 import Collapse from '../../components/collapse/collapse'
+import React, {useState} from 'react'
 
+import './index.scss'
 
 export default function Index() {
 
@@ -28,6 +28,7 @@ export default function Index() {
     const calendarTheme = {
       nutuiColorPrimary: '#5d6fbb',
       nutuiCalendarActiveBackgroundColor: '#5d6fbb',
+      nutuiCalendarDayActiveBorderRadius: '20px',
     }
 
     const date = new Date();
@@ -82,6 +83,9 @@ export default function Index() {
         </ConfigProvider>
       </div>
       <Collapse /><Collapse /><Collapse /><Collapse />
+      <Sticky threshold={0} position='bottom'>
+        <Button type='primary'>搜索与收藏</Button>
+      </Sticky>
     </div>
   )
 }

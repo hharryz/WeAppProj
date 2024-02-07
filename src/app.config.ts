@@ -2,7 +2,7 @@ export default defineAppConfig({
   pages: [
     'pages/index/index',
     'pages/new/new',
-    'pages/statistics/statistics',
+    'pages/moments/moments',
   ],
   window: {
     backgroundTextStyle: 'light',
@@ -29,8 +29,8 @@ export default defineAppConfig({
         selectedIconPath: 'assets/icon/home-active.png'
       },
       {
-        pagePath: 'pages/statistics/statistics',
-        text: '统计',
+        pagePath: 'pages/moments/moments',
+        text: '圈子',
         iconPath: 'assets/icon/palette.png',
         selectedIconPath: 'assets/icon/palette-active.png'
       },

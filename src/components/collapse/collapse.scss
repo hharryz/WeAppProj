@@ -1,5 +1,5 @@
 $unlicked-height: 120rpx;
-$clicked-height: 400rpx;
+$clicked-height: 420rpx;
 
 .collapse-card {
     width: 90%;
@@ -28,12 +28,12 @@ $clicked-height: 400rpx;
 }
 
 .content .head {
-    font-size: large;
+    font-size: medium;
     font-weight: bold;
 }
 
 .content .body {
-    font-size: medium;
+    font-size: small;
 }
 
 .color-tag {
@@ -46,6 +46,7 @@ $clicked-height: 400rpx;
 
 .main-unclicked .time {
     margin-right: 3%;
+    font-size: small;
 }
 
 .main-clicked {
@@ -76,12 +77,20 @@ $clicked-height: 400rpx;
 
 .main-clicked .time {
     margin-right: 2.8%;
+    font-size: small;
 }
 
 .main-clicked .card-body {
-    height: calc(#{$clicked-height} - #{$unlicked-height} - 30rpx);
+    // height: calc(#{$clicked-height} - #{$unlicked-height} - 100rpx);
     margin-left: 3%;
     margin-right: 2%;
     margin-top: 2%;
+    margin-bottom: 2%;
+    overflow-wrap: break-word;
+    font-size: small;
 }
 
+.main-clicked .button {
+    margin-right: 5%;
+    margin-bottom: 5%;
+}
