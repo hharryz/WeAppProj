@@ -1,0 +1,63 @@
+.share-card {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    border-radius: 30rpx;
+    background-color: rgba(240, 248, 255, 0.3);
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-top: 20rpx;
+}
+
+.avatar {
+    width: 15%;
+}
+
+.nickname {
+    font-size: medium;
+    font-weight: normal;
+    width: 75%;
+}
+
+.main {
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+}
+
+.display-image {
+    display: flex;
+    flex-direction: row;
+    margin-left: 3%;
+}
+
+.image-item {
+    border-radius: 20rpx;
+}
+
+.rate {
+    margin-top: 20rpx;
+    margin-left: 3%;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+}
+
+.date {
+    font-size: smaller;
+    color: darkgrey;
+}
