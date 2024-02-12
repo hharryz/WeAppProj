@@ -39,7 +39,7 @@ export default defineAppConfig({
         pagePath: 'pages/search/search',
         text: '搜索',
         iconPath: 'assets/icon/palette.png',
-        selectedIconPath: 'assets/icon/palette-active.png'
+        selectedIconPath: 'assets/icon/search-category-active.png'
       },
     ]
   },
