@@ -1,5 +1,5 @@
 // searchPage.scss  
-  
+
 .search-container {  
   padding: 20px;  
   
@@ -34,12 +34,15 @@
       cursor: pointer;  
       transition: background-color 0.3s;  
       height: 50px;
-      font-size: 30px; /* 调整字体大小 */  
-
-
+      font-size: 30px; /* 调整字体大小 */
+      margin-left: 10px;  
       &:hover {  
         background-color: #5d6fbb;  
       }  
+
+      .DateSelect{
+        font-size:10px;
+      }
     }  
     .calendar-container {  
       position: relative;  

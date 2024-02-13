@@ -2,30 +2,25 @@
   
 import React, { useState, useEffect } from 'react';  
 import './search.scss';  
-import { DatePicker,Cell } from '@nutui/nutui-react-taro'
+import { DatePicker,Cell,ConfigProvider } from '@nutui/nutui-react-taro'
 
 
-var DateSelect = () => {
+
+const SearchPage: React.FC = () => {  
+  const cellTheme = {
+    nutuiCellPadding: '50px,50px',
+    nutuiCellExtraFontSize:'30px',
+    nutuiCellTitleFontSize:'30px',
+    nutuiCellLineHeight:'24px',
+    nutuiCellDividerRight:'100px',
+    nutuiCellBorderRadius:'20px',
+  }
+  const [monitor, setMonitor] = useState(false)
   const [show1, setShow1] = useState(false)
-  const [desc1, setDesc1] = useState('2012年 01月 01日')
+  const [desc1, setDesc1] = useState('2024年 02月 12日')
   const confirm1 = (values:(string|number)[],options:PickerOption[])=>{
     setDesc1(options.map((option) => option.text).join(' '))
   }
-  return ( 
-    <>   
-      <Cell title="显示中文" desc={desc1} onClick={() => setShow1(true)} />
-      <DatePicker
-        title="日期选择"
-        visible={show1}
-        isShowChinese
-        onCloseDatePicker={() => setShow1(false)}
-        onConfirmDatePicker={(values,options) => confirm1(values,options)}
-      />
-    </>
-  );
-};  
-
-const SearchPage: React.FC = () => {  
   const [searchInput, setSearchInput] = useState("");  
   const [Color1, set1Color] = useState('white');  
   const [Color2, set2Color] = useState('white');  
@@ -55,7 +50,10 @@ const SearchPage: React.FC = () => {
   const handleDiary = () => {  
     set6Color(Color6 === 'white' ? '#5d6fbb' : 'white');  
   };  
-  var Dat = DateSelect();
+  const handleDate = () => {
+    setShow1(true);
+    setMonitor(true);
+  }
 
   return (  
     <div className="search-container">  
@@ -67,13 +65,19 @@ const SearchPage: React.FC = () => {
           onChange={(e) => setSearchInput(e.target.value)}   
         />  
 
-        <button onClick={DateSelect} style={{ margin: '10px' }}>日期筛选</button>  
 
-        <button onClick={handleSearch}>搜索</button>  
 
-      </div>  
-      <div>  
-        {Dat}
+      <ConfigProvider theme={cellTheme}>
+        <Cell description={desc1} onClick={handleDate} />
+        <DatePicker
+          title="日期选择"
+          visible={show1}
+          showChinese
+          onClose={() => setShow1(false)}
+          onConfirm={(options, values) => confirm1(values,options)}
+        />        
+      </ConfigProvider>
+      <button onClick={handleSearch}>搜索</button>  
       </div>  
       <div className="favorites-section">  
         <span>已收藏</span>  
