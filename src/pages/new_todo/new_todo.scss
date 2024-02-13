@@ -1,6 +1,6 @@
 
-.container_note{
-    background-image: url('../../assets/pic/tb_note.png');
+.container_todo{
+    background-image: url('../../assets/pic/tb_todo.png');
     //url('../../assets/pic/tb_note.png');
     background-size: cover; /* 设置背景图片覆盖整个元素 */
     background-attachment: scroll; /* 设置背景图片固定，不随页面滚动 */
@@ -31,38 +31,6 @@
     padding: 0; /* 移除内边距 */
 }
 
-.container_music{
-    background-image: url('../../assets/pic/tb_music.png');
-    background-size: cover; /* 设置背景图片覆盖整个元素 */
-    background-attachment: scroll; /* 设置背景图片固定，不随页面滚动 */
-    background-repeat: no-repeat; /* 不重复显示图片 */
-    width: 100vw; /* 设置宽度为视口宽度，确保图片覆盖整个屏幕 */
-    height: 100vh; /* 设置高度为视口高度，确保图片覆盖整个屏幕 */
-    margin: 0; /* 移除外边距 */
-    padding: 0; /* 移除内边距 */
-}
-
-.container_film{
-    background-image: url('../../assets/pic/tb_film.png');
-    background-size: cover; /* 设置背景图片覆盖整个元素 */
-    background-attachment: scroll; /* 设置背景图片固定，不随页面滚动 */
-    background-repeat: no-repeat; /* 不重复显示图片 */
-    width: 100vw; /* 设置宽度为视口宽度，确保图片覆盖整个屏幕 */
-    height: 100vh; /* 设置高度为视口高度，确保图片覆盖整个屏幕 */
-    margin: 0; /* 移除外边距 */
-    padding: 0; /* 移除内边距 */
-}
-
-.container_book{
-    background-image: url('../../assets/pic/tb_book.png');
-    background-size: cover; /* 设置背景图片覆盖整个元素 */
-    background-attachment: scroll; /* 设置背景图片固定，不随页面滚动 */
-    background-repeat: no-repeat; /* 不重复显示图片 */
-    width: 100vw; /* 设置宽度为视口宽度，确保图片覆盖整个屏幕 */
-    height: 100vh; /* 设置高度为视口高度，确保图片覆盖整个屏幕 */
-    margin: 0; /* 移除外边距 */
-    padding: 0; /* 移除内边距 */
-}
 
 .star{
     background-image: url('../../assets/icon/star.png');

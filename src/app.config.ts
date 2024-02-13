@@ -1,8 +1,15 @@
+// import Taro from '@tarojs/taro'
+// import  React, { useState, useEffect} from "react";
+// import { ActionSheet } from '@nutui/nutui-react-taro';
+
 export default defineAppConfig({
+
+
   pages: [
     'pages/index/index',
     'pages/new/new',
     'pages/moments/moments',
+    'pages/new_todo/new_todo',
   ],
   window: {
     backgroundTextStyle: 'light',
