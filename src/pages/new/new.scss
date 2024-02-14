@@ -1,0 +1,195 @@
+
+.container_note{
+    background-image: url('../../assets/pic/no.png');
+    //url('../../assets/pic/tb_note.png');
+    background-size: cover; /* 设置背景图片覆盖整个元素 */
+    background-attachment: scroll; /* 设置背景图片固定，不随页面滚动 */
+    background-repeat: no-repeat; /* 不重复显示图片 */
+    width: 100vw; /* 设置宽度为视口宽度，确保图片覆盖整个屏幕 */
+    height: 100vh; /* 设置高度为视口高度，确保图片覆盖整个屏幕 */
+    margin: 0; /* 移除外边距 */
+    padding: 0; /* 移除内边距 */
+}
+
+.container_music{
+    background-image: url('../../assets/pic/mu.png');
+    background-size: cover; /* 设置背景图片覆盖整个元素 */
+    background-attachment: scroll; /* 设置背景图片固定，不随页面滚动 */
+    background-repeat: no-repeat; /* 不重复显示图片 */
+    width: 100vw; /* 设置宽度为视口宽度，确保图片覆盖整个屏幕 */
+    height: 100vh; /* 设置高度为视口高度，确保图片覆盖整个屏幕 */
+    margin: 0; /* 移除外边距 */
+    padding: 0; /* 移除内边距 */
+}
+
+.container_film{
+    background-image: url('../../assets/pic/fi.png');
+    background-size: cover; /* 设置背景图片覆盖整个元素 */
+    background-attachment: scroll; /* 设置背景图片固定，不随页面滚动 */
+    background-repeat: no-repeat; /* 不重复显示图片 */
+    width: 100vw; /* 设置宽度为视口宽度，确保图片覆盖整个屏幕 */
+    height: 100vh; /* 设置高度为视口高度，确保图片覆盖整个屏幕 */
+    margin: 0; /* 移除外边距 */
+    padding: 0; /* 移除内边距 */
+}
+
+.container_book{
+    background-image: url('../../assets/pic/bo.png');
+    background-size: cover; /* 设置背景图片覆盖整个元素 */
+    background-attachment: scroll; /* 设置背景图片固定，不随页面滚动 */
+    background-repeat: no-repeat; /* 不重复显示图片 */
+    width: 100vw; /* 设置宽度为视口宽度，确保图片覆盖整个屏幕 */
+    height: 100vh; /* 设置高度为视口高度，确保图片覆盖整个屏幕 */
+    margin: 0; /* 移除外边距 */
+    padding: 0; /* 移除内边距 */
+}
+
+.container_todo{
+  background-image: url('../../assets/pic/to.png');
+  //url('../../assets/pic/tb_note.png');
+  background-size: cover; /* 设置背景图片覆盖整个元素 */
+  background-attachment: scroll; /* 设置背景图片固定，不随页面滚动 */
+  background-repeat: no-repeat; /* 不重复显示图片 */
+  width: 100vw; /* 设置宽度为视口宽度，确保图片覆盖整个屏幕 */
+  height: 100vh; /* 设置高度为视口高度，确保图片覆盖整个屏幕 */
+  margin: 0; /* 移除外边距 */
+  padding: 0; /* 移除内边距 */
+}
+
+.star{
+    background-image: url('../../assets/icon/star.png');
+}
+
+.c_title {
+    padding-top: 5%;
+    padding-inline: 15%;
+    display: flex;
+}
+
+.c_content {
+    padding-inline: 15%;
+    padding-top: 10px;
+    border-radius: 10%;
+}
+
+.c_picker {
+    padding-inline: 15%;
+    display: flex;
+    padding-bottom: 20px;
+}
+
+.c_date {
+    position: fixed;
+    left: 5%;
+    bottom: 20%;
+}
+
+.c_footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+.col_container {
+    width: 98%;
+    display: flex;
+  }
+  
+.col1{
+  color: #f3eeea;
+  font-size: xx-small;
+  display: flex;
+  align-items:start;
+  flex: 7;
+  justify-content: left;
+  //border: 1px solid black;
+}
+.col2{
+  display: flex;
+  align-items: center;
+  font-size: xx-small;
+  color: #f3eeea;
+  flex: 1;
+  justify-content: center;
+  //border: 1px solid black;
+}
+.cold1{
+  color: #b39879;
+  font-size: xx-small;
+  display: flex;
+  align-items:start;
+  flex: 5;
+  justify-content: left;
+  padding-left: 5%;
+  //border: 1px solid black;
+}
+.cold2{
+  display: flex;
+  align-items: center;
+  font-size: xx-small;
+  color: #9a7549;
+  flex: 1;
+  justify-content: center;
+  //border: 1px solid black;
+}
+.c_paddingtop{
+  padding-top: 20px;
+}
+.c_paddingbottom{
+  padding-top: 20px;
+}
+.c_paddingleft{
+  padding-left: 20px;
+}
+.c_icon{
+  height: 5px;
+  width: 5px;
+}
+
+.c_header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    height: 6%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8%;
+    background-color: #91ad9e;
+    color: #f3eeea;
+  }
+
+  .c_icon_star{
+    height: 60%;
+    width: 50%;
+  }
+  .c_icon_lock{
+    height: 60%;
+    width: 60%;
+  }
+  .c_icon_to{
+    height: 40%;
+    width: 60%;
+  }
+  .c_icon_like{
+    height: 90%;
+    width: 50%;
+  }
+  .c_icon_delete{
+    height: 60%;
+    width: 60%;
+  }
+
+ .c_switcher{
+  padding-top: 10%;
+  border-end-end-radius: 8%;
+ }
+
+ .c_icon_done{
+  height: 80%;
+  width: 40%;
+}
