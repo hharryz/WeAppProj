@@ -4,7 +4,60 @@
     flex-direction: column;
 }
 
+.mycard {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 155rpx;
+    border-radius: 30rpx;
+    background-color: rgba(240, 248, 255, 0.3);
+}
+
+.change-card {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    height: 155rpx;
+    border-radius: 30rpx;
+    background-color: rgba(240, 248, 255, 0.3);
+    align-items: center;
+    padding-left: 30rpx;
+}
+
+.namecard-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 3%;
+    margin-right: 3%;
+    // padding-top: 20rpx;
+    // padding-bottom: 20rpx;
+}
+
+.avatar-wrapper {
+    width: 120rpx;
+    height: 150rpx;
+    padding-top: 25rpx;
+    border: none;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.myinfo {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20rpx;
+    width: 60%;
+}
+
+.nickname {
+    font-size: medium;
+    font-weight: bold;
+}
+
 .calendar-wrapper {
+    margin-top: 20rpx;
     width: 85%;
 }
 
