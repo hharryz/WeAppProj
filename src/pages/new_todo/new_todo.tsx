@@ -173,10 +173,10 @@ export default function Form() {
             </div>
             <div className='col2' onClick={ClickDone}>
             { ( done == true ) &&
-              <img src={require('../../assets/icon/finish.png')} className='c_icon_finish' />
+              <img src={require('../../assets/icon/done.png')} className='c_icon_finish' />
             }
             { ( done == false ) &&
-              <img src={require('../../assets/icon/unfinish.png')} className='c_icon_finish' />
+              <img src={require('../../assets/icon/undone.png')} className='c_icon_finish' />
             }
           </div>
           </div>
