@@ -1,32 +1,12 @@
 
 .container_todo{
-    background-image: url('../../assets/pic/tb_todo.png');
+    background-image: url('../../assets/pic/to.png');
     //url('../../assets/pic/tb_note.png');
     background-size: cover; /* 设置背景图片覆盖整个元素 */
     background-attachment: scroll; /* 设置背景图片固定，不随页面滚动 */
     background-repeat: no-repeat; /* 不重复显示图片 */
     width: 100vw; /* 设置宽度为视口宽度，确保图片覆盖整个屏幕 */
     height: 100vh; /* 设置高度为视口高度，确保图片覆盖整个屏幕 */
-    margin: 0; /* 移除外边距 */
-    padding: 0; /* 移除内边距 */
-}
-.c_mark{
-    background-image: url('../../assets/icon/star.png');
-    //url('../../assets/pic/tb_note.png');
-    background-size: cover; /* 设置背景图片覆盖整个元素 */
-    background-attachment: fixed; /* 设置背景图片固定，不随页面滚动 */
-    background-repeat: no-repeat; /* 不重复显示图片 */
-    background-position: center;
-    margin: 0; /* 移除外边距 */
-    padding: 0; /* 移除内边距 */
-}
-.c_unmark{
-    background-image: url('../../assets/icon/unstar.png');
-    //url('../../assets/pic/tb_note.png');
-    background-size: cover; /* 设置背景图片覆盖整个元素 */
-    background-attachment: fixed; /* 设置背景图片固定，不随页面滚动 */
-    background-repeat: no-repeat; /* 不重复显示图片 */
-    background-position: center;
     margin: 0; /* 移除外边距 */
     padding: 0; /* 移除内边距 */
 }
@@ -38,17 +18,17 @@
 
 .c_title {
     padding-top: 20%;
-    padding-inline: 20%;
+    padding-inline: 15%;
     display: flex;
 }
 
 .c_content {
-    padding-inline: 20%;
+    padding-inline: 15%;
     padding-top: 2%;
 }
 
 .c_picker {
-    padding-inline: 20%;
+    padding-inline: 15%;
     display: flex;
 }
 
@@ -77,8 +57,18 @@
   color: gray;
   font-size: xx-small;
   display: flex;
-  align-items: center;
-  flex: 6;
+  align-items: left;
+  flex: 8;
+  justify-content: left;
+  //border: 1px solid black;
+}
+.col3{
+  display: flex;
+  align-items: right;
+  flex: 2;
+  justify-content: center;
+  font-size: xx-small;
+  color: gray;
   //border: 1px solid black;
 }
 .col2{
@@ -86,6 +76,8 @@
   align-items: center;
   flex: 1;
   justify-content: center;
+  font-size: xx-small;
+  color: gray;
   //border: 1px solid black;
 }
 .c_icon{
@@ -101,4 +93,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-bottom: 2px;
+    border-radius: 5%;
+    background-color: #cbb9af;
+  }
+
+  .c_icon_to{
+    height: 40%;
+    width: 60%;
+  }
+  .c_icon_finish{
+    height: 90%;
+    width: 60%;
   }

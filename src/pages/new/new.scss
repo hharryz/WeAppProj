@@ -1,6 +1,6 @@
 
 .container_note{
-    background-image: url('../../assets/pic/tb_note.png');
+    background-image: url('../../assets/pic/no.png');
     //url('../../assets/pic/tb_note.png');
     background-size: cover; /* 设置背景图片覆盖整个元素 */
     background-attachment: scroll; /* 设置背景图片固定，不随页面滚动 */
@@ -10,29 +10,9 @@
     margin: 0; /* 移除外边距 */
     padding: 0; /* 移除内边距 */
 }
-.c_mark{
-    background-image: url('../../assets/icon/star.png');
-    //url('../../assets/pic/tb_note.png');
-    background-size: cover; /* 设置背景图片覆盖整个元素 */
-    background-attachment: fixed; /* 设置背景图片固定，不随页面滚动 */
-    background-repeat: no-repeat; /* 不重复显示图片 */
-    background-position: center;
-    margin: 0; /* 移除外边距 */
-    padding: 0; /* 移除内边距 */
-}
-.c_unmark{
-    background-image: url('../../assets/icon/unstar.png');
-    //url('../../assets/pic/tb_note.png');
-    background-size: cover; /* 设置背景图片覆盖整个元素 */
-    background-attachment: fixed; /* 设置背景图片固定，不随页面滚动 */
-    background-repeat: no-repeat; /* 不重复显示图片 */
-    background-position: center;
-    margin: 0; /* 移除外边距 */
-    padding: 0; /* 移除内边距 */
-}
 
 .container_music{
-    background-image: url('../../assets/pic/tb_music.png');
+    background-image: url('../../assets/pic/mu.png');
     background-size: cover; /* 设置背景图片覆盖整个元素 */
     background-attachment: scroll; /* 设置背景图片固定，不随页面滚动 */
     background-repeat: no-repeat; /* 不重复显示图片 */
@@ -43,7 +23,7 @@
 }
 
 .container_film{
-    background-image: url('../../assets/pic/tb_film.png');
+    background-image: url('../../assets/pic/fi.png');
     background-size: cover; /* 设置背景图片覆盖整个元素 */
     background-attachment: scroll; /* 设置背景图片固定，不随页面滚动 */
     background-repeat: no-repeat; /* 不重复显示图片 */
@@ -54,7 +34,7 @@
 }
 
 .container_book{
-    background-image: url('../../assets/pic/tb_book.png');
+    background-image: url('../../assets/pic/bo.png');
     background-size: cover; /* 设置背景图片覆盖整个元素 */
     background-attachment: scroll; /* 设置背景图片固定，不随页面滚动 */
     background-repeat: no-repeat; /* 不重复显示图片 */
@@ -64,24 +44,38 @@
     padding: 0; /* 移除内边距 */
 }
 
+.container_todo{
+  background-image: url('../../assets/pic/to.png');
+  //url('../../assets/pic/tb_note.png');
+  background-size: cover; /* 设置背景图片覆盖整个元素 */
+  background-attachment: scroll; /* 设置背景图片固定，不随页面滚动 */
+  background-repeat: no-repeat; /* 不重复显示图片 */
+  width: 100vw; /* 设置宽度为视口宽度，确保图片覆盖整个屏幕 */
+  height: 100vh; /* 设置高度为视口高度，确保图片覆盖整个屏幕 */
+  margin: 0; /* 移除外边距 */
+  padding: 0; /* 移除内边距 */
+}
+
 .star{
     background-image: url('../../assets/icon/star.png');
 }
 
 .c_title {
-    padding-top: 20%;
-    padding-inline: 20%;
+    padding-top: 5%;
+    padding-inline: 15%;
     display: flex;
 }
 
 .c_content {
-    padding-inline: 20%;
-    padding-top: 2%;
+    padding-inline: 15%;
+    padding-top: 10px;
+    border-radius: 10%;
 }
 
 .c_picker {
-    padding-inline: 20%;
+    padding-inline: 15%;
     display: flex;
+    padding-bottom: 20px;
 }
 
 .c_date {
@@ -101,24 +95,55 @@
   }
   
 .col_container {
-    width: 90%;
+    width: 98%;
     display: flex;
   }
   
 .col1{
-  color: gray;
+  color: #f3eeea;
   font-size: xx-small;
   display: flex;
-  align-items: center;
-  flex: 6;
+  align-items:start;
+  flex: 7;
+  justify-content: left;
   //border: 1px solid black;
 }
 .col2{
   display: flex;
   align-items: center;
+  font-size: xx-small;
+  color: #f3eeea;
   flex: 1;
   justify-content: center;
   //border: 1px solid black;
+}
+.cold1{
+  color: #b39879;
+  font-size: xx-small;
+  display: flex;
+  align-items:start;
+  flex: 5;
+  justify-content: left;
+  padding-left: 5%;
+  //border: 1px solid black;
+}
+.cold2{
+  display: flex;
+  align-items: center;
+  font-size: xx-small;
+  color: #9a7549;
+  flex: 1;
+  justify-content: center;
+  //border: 1px solid black;
+}
+.c_paddingtop{
+  padding-top: 20px;
+}
+.c_paddingbottom{
+  padding-top: 20px;
+}
+.c_paddingleft{
+  padding-left: 20px;
 }
 .c_icon{
   height: 5px;
@@ -129,8 +154,42 @@
     width: 100%;
     position: fixed;
     top: 0;
-    height: 5vh;
+    height: 6%;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 8%;
+    background-color: #91ad9e;
+    color: #f3eeea;
   }
+
+  .c_icon_star{
+    height: 60%;
+    width: 50%;
+  }
+  .c_icon_lock{
+    height: 60%;
+    width: 60%;
+  }
+  .c_icon_to{
+    height: 40%;
+    width: 60%;
+  }
+  .c_icon_like{
+    height: 90%;
+    width: 50%;
+  }
+  .c_icon_delete{
+    height: 60%;
+    width: 60%;
+  }
+
+ .c_switcher{
+  padding-top: 10%;
+  border-end-end-radius: 8%;
+ }
+
+ .c_icon_done{
+  height: 80%;
+  width: 40%;
+}

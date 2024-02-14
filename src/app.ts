@@ -7,7 +7,7 @@ function App({ children }: PropsWithChildren<any>) {
 
   useLaunch(() => {
     Taro.cloud.init({
-      env: ''
+      env: 'cloud1-7g7hsu6p65fc0729'
     })
 
     console.log('App launched.')

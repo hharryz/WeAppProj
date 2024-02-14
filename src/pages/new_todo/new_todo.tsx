@@ -1,17 +1,17 @@
 import './new_todo.scss'
 import Taro from '@tarojs/taro'
 import  React, { useState, useEffect} from "react";
-import {  ConfigProvider,Picker,Cell,Rate,Button, TextArea, Uploader, Tag, Input, DatePicker } from '@nutui/nutui-react-taro';
+import {  ConfigProvider,Cell,Button, TextArea, Uploader, DatePicker } from '@nutui/nutui-react-taro';
 import { Dongdong } from '@nutui/icons-react-taro';
 import moment from 'moment';
 import { TARGET } from '@tarojs/runtime';
 
 
 
-
 export default function Form() {
-  
+
   var usrID = '0001', ID = 1;
+  var NewOrEdit = false;//false == new; true == edit;
   const [done, setDone] = useState(false);
   const [note, setNote] = useState({
     topic: '',
@@ -66,7 +66,7 @@ export default function Form() {
         setDone(false);
   }
 
-  const ClickFinish = () => {
+  const ClickFinishTODO = () => {
     Taro.cloud.init()
     const db = Taro.cloud.database();
     const id = '1'; 
@@ -90,6 +90,11 @@ export default function Form() {
     });
   }
 
+  const ClickChange = () => {
+    Taro.switchTab({url: '../new/new'});
+}
+
+
 //   function ContentChange(e) {
 //     setNote({
 //       ...note,
@@ -107,15 +112,11 @@ export default function Form() {
           <div className='col1'>
             <Button onClick={ClickFinish} fill="none" style={marginStyle}>完成</Button>
           </div>
-          <div className='col2' onClick={ClickFinish}>
-            { ( done == true ) &&
-              (<div className='c_unlock' >0</div>)
-            }
-            { ( done == false ) &&
-              (<div className='c_lock' >1</div>)
-            }
+          <div className='col2'></div>
+          <div className='col2'></div>
+          <div className='col2' onClick={ClickChange}>
+            <img src={require('../../assets/icon/tonote.png')} className='c_icon_to' />
           </div>
-          
         </div>
       </div>
 
@@ -167,12 +168,17 @@ export default function Form() {
             <div className="col1">
               {date}
             </div>
-            <div className="col2">
-
+            <div className="col3">
+              完成状况
             </div>
-            <div className="col2">
-
-            </div>
+            <div className='col2' onClick={ClickDone}>
+            { ( done == true ) &&
+              <img src={require('../../assets/icon/finish.png')} className='c_icon_finish' />
+            }
+            { ( done == false ) &&
+              <img src={require('../../assets/icon/unfinish.png')} className='c_icon_finish' />
+            }
+          </div>
           </div>
         </div>
       </div>
