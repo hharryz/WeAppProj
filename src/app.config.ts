@@ -10,6 +10,7 @@ export default defineAppConfig({
     'pages/new/new',
     'pages/moments/moments',
     'pages/new_todo/new_todo',
+    'pages/search/search',
   ],
   window: {
     backgroundTextStyle: 'light',
@@ -41,6 +42,12 @@ export default defineAppConfig({
         iconPath: 'assets/icon/palette.png',
         selectedIconPath: 'assets/icon/palette-active.png'
       },
+      {
+        pagePath: 'pages/search/search',
+        text: '搜索',
+        iconPath: 'assets/icon/search-category-active.png',
+        selectedIconPath: 'assets/icon/search-category-active.png'
+      }
     ]
   },
 
