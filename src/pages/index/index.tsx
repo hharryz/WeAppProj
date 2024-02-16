@@ -289,11 +289,5 @@ export default function Index() {
     </div>
   )
 
-
-
   
-<<<<<<< Updated upstream
 }
-=======
-}
->>>>>>> Stashed changes

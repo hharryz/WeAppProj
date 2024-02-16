@@ -120,11 +120,7 @@ export default function NoteCard({ note}: { note: Note }) {
                 <div className='date'>{ note.time.slice(0, 4) + '-' + note.time.slice(4, 6) + '-' + note.time.slice(6, 8) }</div>
                 <div className='right-side'>
                   <div className='edit'>
-<<<<<<< Updated upstream
-                    {note.ismine? <img src={require('./edit.png')} className='edit-item'></img> : null}
-=======
                     {note.ismine? <img src={require('./edit.png')} className='edit-item' onClick={clickEdit}></img> : null}
->>>>>>> Stashed changes
                   </div>
                   <div className='star'>
                     {(note.star && note.ismine)? <img src={require('./star.png')} className='star-item'></img> 
