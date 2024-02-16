@@ -44,8 +44,9 @@ const SearchPage: React.FC = () => {
     userid: "user123",  
     avatar: "https://example.com/avatar.jpg",  
   };  
-  const [show1, setShow1] = useState(false)
-  const [desc1, setDesc1] = useState('选择日期')
+  const [show1, setShow1] = useState(false);
+  const [desc1, setDesc1] = useState('选择日期');
+  const [desc2, setDesc2] = useState('');
   const [searchInput, setSearchInput] = useState("");  
   const [Color1, set1Color] = useState('white');  
   const [Color2, set2Color] = useState('white');  
@@ -135,7 +136,21 @@ const SearchPage: React.FC = () => {
         content: item.content,
       }
       return note
-    })):(res.data.data.filter(item => (item.tag) === tag).map(item => {  
+    })):(tag==='other'?(
+      res.data.data.filter(item => item.tag !== 'film' && item.tag !== 'music' && item.tag !== 'note' && item.tag !== 'book').map(item => {  
+        const note : Note = {  
+          id: item.id,  
+          userid:item.userid,
+          time: item.time,  
+          tag: item.tag,  
+          mark: item.mark,  
+          share: item.share,  
+          star: item.star,  
+          content: item.content,  
+        };  
+        return note;  
+      })
+    ):(res.data.data.filter(item => (item.tag) === tag).map(item => {  
       const note : Note = {  
         id: item.id,  
         userid:item.userid,
@@ -147,7 +162,7 @@ const SearchPage: React.FC = () => {
         content: item.content,  
       };  
       return note;  
-    }));
+    })));
 
     setNoteList(filteredNotes);
     console.log(filteredNotes);
@@ -162,6 +177,16 @@ const SearchPage: React.FC = () => {
   useEffect(() => {   
     console.log('Condition has changed:', condition);  
   }, [condition]);
+  useEffect(() => {   
+    setDesc2(desc1.replace(/年|月|日|:|\s+/g, ""));
+    console.log('Time has changed:',desc1);  
+  }, [desc1]);
+  useEffect(() => {   
+    console.log('Time:',desc2);  
+  }, [desc2]);
+  useEffect(() => {   
+    console.log('baseDesc hase changed:',baseDesc);  
+  }, [baseDesc]);
   const handleFilm = () => {  
     if(tag ==='film'){
       setTag('none');
@@ -217,7 +242,7 @@ const SearchPage: React.FC = () => {
           "config": {
             "env": "prod-7gbkokc9486b1064"
           },
-          "path": `/api/note`,
+          "path": `/api/login`,
           "header": {
             "X-WX-SERVICE": "myapp-demo",
             "content-type": "application/json"
@@ -225,7 +250,7 @@ const SearchPage: React.FC = () => {
           "method": "GET",
         }).then(res => {
           console.log(res.data)
-      const filteredSearchs = res.data.data.filter(item => (item.content.includes(searchInput))).map(item => {  
+      var filteredSearchs = res.data.data.filter(item => (item.content.includes(searchInput))).map(item => {  
         const search : Note = {  
           id: item.id,  
           userid:item.userid,
@@ -253,7 +278,7 @@ const SearchPage: React.FC = () => {
           "config": {
             "env": "prod-7gbkokc9486b1064"
           },
-          "path": `/api/note`,
+          "path": `/api/login`,
           "header": {
             "X-WX-SERVICE": "myapp-demo",
             "content-type": "application/json"
@@ -261,7 +286,7 @@ const SearchPage: React.FC = () => {
           "method": "GET",
         }).then(res => {
           console.log(res.data)
-      const filteredSearchs = res.data.data.filter(item => ((item.content.includes(searchInput))||(item.time===desc1))).map(item => {  
+      var filteredSearchs = res.data.data.filter(item => (item.content.includes(searchInput))&&(item.time==desc2)).map(item => {  
         const search : Note = {  
           id: item.id,  
           userid:item.userid,
@@ -289,7 +314,7 @@ const SearchPage: React.FC = () => {
           "config": {
             "env": "prod-7gbkokc9486b1064"
           },
-          "path": `/api/note`,
+          "path": `/api/login`,
           "header": {
             "X-WX-SERVICE": "myapp-demo",
             "content-type": "application/json"
@@ -297,7 +322,19 @@ const SearchPage: React.FC = () => {
           "method": "GET",
         }).then(res => {
           console.log(res.data)
-      const filteredSearchs = res.data.data.filter(item => ((item.content.includes("{searchInput}"))||(item.tag===baseDesc))).map(item => {  
+      var filteredSearchs = baseDesc==='other'? res.data.data.filter(item => item.tag !== 'film' && item.tag !== 'music' && item.tag !== 'note' && item.tag !== 'book' && item.content.includes(searchInput)).map(item => {  
+        const search : Note = {  
+          id: item.id,  
+          userid:item.userid,
+          time: item.time,  
+          tag: item.tag,  
+          mark: item.mark,  
+          share: item.share,  
+          star: item.star,  
+          content: item.content,  
+        };  
+        return search;  
+      }):res.data.data.filter(item => item.tag===baseDesc&&item.content.includes(searchInput)).map(item => {  
         const search : Note = {  
           id: item.id,  
           userid:item.userid,
@@ -325,15 +362,30 @@ const SearchPage: React.FC = () => {
           "config": {
             "env": "prod-7gbkokc9486b1064"
           },
-          "path": `/api/note`,
+          "path": `/api/login`,
           "header": {
             "X-WX-SERVICE": "myapp-demo",
             "content-type": "application/json"
           },
           "method": "GET",
         }).then(res => {
-          console.log(res.data)
-      const filteredSearchs = res.data.data.filter(item => ((item.content.includes("{searchInput}"))||(item.time===desc1)||(item.tag===baseDesc))).map(item => {  
+          console.log(res.data);
+      var filteredSearchs = baseDesc==='other'? 
+      res.data.data.filter(item => item.tag !== 'film' && item.tag !== 'music' && item.tag !== 'note' && item.tag !== 'book' && item.time===desc2 && item.content.includes(searchInput)).map(item => {  
+        const search : Note = {  
+          id: item.id,  
+          userid:item.userid,
+          time: item.time,  
+          tag: item.tag,  
+          mark: item.mark,  
+          share: item.share,  
+          star: item.star,  
+          content: item.content,  
+        };  
+        return search;  
+      })
+      :
+      res.data.data.filter(item => item.tag===baseDesc&&item.time===desc2&&item.content.includes(searchInput)).map(item => {  
         const search : Note = {  
           id: item.id,  
           userid:item.userid,
@@ -359,7 +411,10 @@ const SearchPage: React.FC = () => {
     }
   };  
   const handleReturn = () => {
-    setCondition('collection')
+    setCondition('collection');
+    setDesc1('选择日期');
+    setBaseDesc('选择标签');
+    setTag('None');
   }
   const collectionCard = () => {
     return(
