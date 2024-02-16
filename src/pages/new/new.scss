@@ -191,11 +191,16 @@ border-end-end-radius: 8%;
 }
 
 .c_icon_done{
-height: 80%;
-width: 40%;
+height: 100%;
+width: 30%;
 }
 
 .c_textarea{
 background-color: #fafafa;
 border-radius: 10px;
+}
+
+.c_bold{
+  font-weight: bold;
+  font-size: large;
 }

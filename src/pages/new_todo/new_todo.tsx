@@ -2,7 +2,8 @@ import './new_todo.scss'
 import moment from 'moment';
 import Taro , { useRouter } from '@tarojs/taro'
 import  React, { useState, useEffect} from "react";
-import {  ConfigProvider,Picker,Cell,Rate,Button,TextArea,Uploader,Tag,Tabs,DatePicker } from '@nutui/nutui-react-taro';
+import {  ConfigProvider,Picker,Cell,Rate,Button,TextArea,Uploader,Tag,Tabs,DatePicker,Input } from '@nutui/nutui-react-taro';
+import { template } from '@babel/core';
 //import {  ConfigProvider,Cell,Button, Animate } from '@nutui/nutui-react-taro';
 
 
@@ -69,9 +70,13 @@ export default function PageB() {
     nutuiButtonDefaultFontWeight: '$font-weight-bold',
   }
   const themeC = {
-    nutuiCellBorderRadius: '500px',
-    nutuiCellBoxShadow: '10px 10px 10px 10px rgba(237, 238, 241, 1)',
+    nutuiCellBorderRadius: '10%',
+    nutuiCellBoxShadow: '0px 10px 10px 5px rgba(237, 238, 241, 1)',
     nutuiCellBackgroundColor: '#fafafa',
+  }
+  const themeT = {
+    '--nutui-button-default-color': '#f3eeea',
+    '--nutui-button-default-background-color': '#5d6fbb',
   }
   
 
@@ -246,13 +251,14 @@ export default function PageB() {
   }
 
   const ccc = () =>{
-    Taro.switchTab({ url: '../moments/moments'});
+    Taro.switchTab({ url: '../index/index'});
   }
 
   useEffect(() => {
     setTag(baseDesc);
   }, [baseDesc]);
 
+  var mid;
   const GetNote = async(id) => {
     
     const res = Taro.cloud.callContainer({
@@ -276,15 +282,21 @@ export default function PageB() {
     setDate((await res).data.data[0].time);
     setPage('0');
     setID((await res).data.data[0].id);
-
+    mid = (await res).data.data[0].tag;
+    console.log(mid);
     console.log(date);
-    if (tagText == 'note') setTag('note');
-    else if (tagText == 'music') setTag('music');
-    else if (tagText == 'film' ) setTag('film');
-    else if (tagText == 'book' ) setTag('book');
-    else setTag('other');
-
-    setBaseDesc(tag);
+    if (mid == 'note'){
+      setTag('note'); setBaseDesc('note'); console.log('note');
+    }else if (mid == 'music'){
+      setTag('music'); setBaseDesc('music');console.log('mu');
+    }else if (mid == 'film' ){
+      setTag('film');  setBaseDesc('film');console.log('fi');
+    }else if (mid == 'book' ){
+      setTag('book');  setBaseDesc('book');console.log('bo');
+    }else {
+      setTag('other'); setBaseDesc('other');console.log('ot');
+    }
+  
   }
 
   const GetTodo = async(id) => {
@@ -316,35 +328,34 @@ export default function PageB() {
 
   }
 
+
   return (
     <>
     <div className={tagBackgroundClass}>
-      
-    
       
     <div className='c_header'>
       <div className='col_container'>
         <div className='col1'>
           <ConfigProvider theme={themeHB}>
-            <Button onClick={ClickFinish} fill="none" size='small' shape='square'>完成</Button>
+            <Button onClick={ClickFinish} fill="none" size='normal' shape='square'>完成</Button>
           </ConfigProvider>
         </div>
 
 
         <div className='col2' onClick={ClickShare}>
-          { ( share == true ) && //('unlock')
+          { (page == '0') && ( share == true ) && //('unlock')
             (<img src={require('./unlock.png')} className='c_icon_lock' />)
           }
-          { ( share == false ) && //('lock')
+          { (page == '0') && ( share == false ) && //('lock')
             (<img src={require('./lock.png')} className='c_icon_lock' />)
           }
         </div>
 
         <div className='col2' onClick={ClickStar}> 
-          { ( star == true ) && //('star')
+          { (page == '0') && ( star == true ) && //('star')
             (<img src={require('./star.png')} className='c_icon_star' />)
           }
-          { ( star == false ) && //('unstar')
+          { (page == '0') && ( star == false ) && //('unstar')
             (<img src={require('./unstar.png')} className='c_icon_star' />)
           }
         </div>
@@ -357,7 +368,7 @@ export default function PageB() {
     </div>
       
 
-        <div className='c_switcher'>
+    <div className='c_switcher'>
           <ConfigProvider theme={themeHT}>
           <Tabs value={page} activeColor='#000000' onChange={ (value) => {
             setPage(value); ClickDelete();
@@ -366,16 +377,15 @@ export default function PageB() {
             {(page == '1') && (<Tabs.TabPane title="编辑待办"></Tabs.TabPane>)}
           </Tabs>
           </ConfigProvider>
-        </div>
+    </div>
 
-    <div className='c_ body'>
+    <div className='c_body'>   
     {(page == '0') && (
         <>
-
         <div className='c_picker'>
-          
-            <Cell title="#Tag:"  description={baseDesc} onClick={() => setVisible(!visible)}/>
-          
+          <ConfigProvider theme={themeC}>
+            <Cell title="#Tag:"  description={baseDesc} onClick={() => setVisible(!visible)}/>          
+          </ConfigProvider>
           <div className='c_paddingtop'><Picker
             visible={visible}
             options={listData1}
@@ -396,7 +406,7 @@ export default function PageB() {
         </div>
         
         <div className='c_content'>
-          Content: 
+          <div className='c_bold'>Content: </div> 
           <div className='c_paddingtop'>
             <ConfigProvider theme={themeTA}>
               <TextArea rows={1} className='c_textarea' value={contentNote}
@@ -404,8 +414,8 @@ export default function PageB() {
               />
             </ConfigProvider>
           </div> 
-          
         </div>
+        
 
         <div className='c_content'>
           <Uploader
@@ -441,12 +451,12 @@ export default function PageB() {
     )}
     </div>
 
-    <div className='c_ body'>
+    <div className='c_body'>
     {(page == '1') && (
     <>
       <div className='c_title'>
-        Title: 
-        <div className='c_paddingleft'><input value={topic} onChange={TopicChange}></input></div>
+        <div className='c_bold'>Title:</div> 
+        <div className='c_paddingleft'><input style={{fontSize: "18px",  textAlign: "center"}} value={topic} onChange={TopicChange} ></input></div>
       </div>
 
       <div className='c_content'>
@@ -476,7 +486,7 @@ export default function PageB() {
       </div>
 
       <div className='c_content'>
-        Details:
+        <div className='c_bold'>Details:</div>
         <div className='c_paddingtop'>
           <ConfigProvider theme={themeTA}>
             <TextArea rows={5}   className='c_textarea' value={contentTodo}
@@ -509,7 +519,11 @@ export default function PageB() {
     )}
     </div>
 
-    <button onClick={ccc}>back</button>
+    <div className='c_back'>
+      <ConfigProvider theme={themeT}>
+        <Button onClick={ccc} fill='none' size='normal'>返回</Button>
+      </ConfigProvider>
+    </div>
 
     </div>
 

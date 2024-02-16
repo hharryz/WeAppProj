@@ -12,7 +12,7 @@ export default function Bubble_fresh() {
         <>
         {/* <Animate type="ripple" action="click"> */}
         <div className='c_fresh' onClick={ClickFresh}>
-            <img src={require('./refresh.png')} width={'95%'} height={'95%'} />
+            <img src={require('./refresh.png')} width={'100%'} height={'100%'} />
         </div>
         {/* </Animate> */}
         </>

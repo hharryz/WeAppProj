@@ -383,11 +383,6 @@ export default function Form () {
           </div>
         )}
 
-
-        
-        { (NewOrEdit == true) && ('true') }
-        { (NewOrEdit == false) && ('false') }
-
         {(page == '0') && (
           <>
           {/* <div className='c_title'>
@@ -397,8 +392,9 @@ export default function Form () {
 
           <div className='c_picker'>
             
-              <Cell title="#Tag:"  description={baseDesc} onClick={() => setVisible(!visible)}/>
-            
+
+            <Cell title="#Tag:"  description={baseDesc} onClick={() => setVisible(!visible)}/>
+
             <div className='c_paddingtop'><Picker
               visible={visible}
               options={listData1}
@@ -410,7 +406,7 @@ export default function Form () {
 
           <div>
             { ( tag === 'film' || tag === 'book' || tag === 'music' ) &&
-                <div className='c_picker' > Rating: 
+                <div className='c_picker' > <div className='c_bold'>Rating: </div> 
                   <div className='c_paddingleft'>
                     <Rate allowHalf defaultValue={0} value={mark} onChange={(value) => setMark(value)} />
                   </div>
@@ -419,17 +415,19 @@ export default function Form () {
           </div>
           
           <div className='c_content'>
-            Content: 
+            <div className='c_bold'>Content: </div> 
             <div className='c_paddingtop'>
               <ConfigProvider theme={themeTA}>
-                <TextArea rows={1} value={contentNote}
+                <TextArea rows={5} className='c_textarea' value={contentNote}
                   onChange={(contentNote) => setContentNote(contentNote)}
                 />
               </ConfigProvider>
             </div> 
           </div>
 
+
           <div className='c_content'>
+            <div className='c_paddingtop'></div>
             <Uploader
               url={uploadUrl}
               uploadLabel="upload your pics"
@@ -437,7 +435,6 @@ export default function Form () {
               style={{ marginRight: '10px' }}
             />
           </div>
-          <button onClick={WebGet}>get!</button>
 
           <div className="c_footer">
             <div className="col_container">
@@ -466,8 +463,8 @@ export default function Form () {
         {(page == '1') && (
         <>
           <div className='c_title'>
-            Title: 
-            <div className='c_paddingleft'><input value={topic} onChange={TopicChange}></input></div>
+            <div className='c_bold'>Title: </div> 
+            <div className='c_paddingleft'><input value={topic} style={{fontSize: "18px",  textAlign: "center"}} onChange={TopicChange}></input></div>
           </div>
 
           <div className='c_content'>
@@ -497,7 +494,7 @@ export default function Form () {
           </div>
 
           <div className='c_content'>
-            Details:
+            <div className='c_bold'> Details: </div>
             <div className='c_paddingtop'>
               <ConfigProvider theme={themeTA}>
                 <TextArea rows={5}   className='c_textarea' value={contentTodo}
@@ -506,7 +503,6 @@ export default function Form () {
               </ConfigProvider>
             </div>
           </div>
-          <button onClick={WebGet}>get!</button>
           <div className="c_footer">
             <div className="col_container">
               <div className="cold1">
