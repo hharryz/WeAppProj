@@ -40,14 +40,14 @@ export default function NoteCard({ note}: { note: Note }) {
         // }
     ];
 
-    const clickEdit = () => {
-      console.log('click! ' + note.id);
-      Taro.navigateTo({url: `../../pages/new_todo/new_todo?param1=note&param2=${note.id}`})
-    }
-
     const rateTheme = {
         nutuiRateItemMargin: '1rpx',
         nutuiRateIconColor: '#5d6fbb',
+    }
+
+    const clickEdit = () => {
+      console.log('click! ' + note.id);
+      Taro.navigateTo({url: `../../pages/new_todo/new_todo?param1=note&param2=${note.id}`})
     }
 
     const [init, setInit] = useState<number>(0);
@@ -120,8 +120,7 @@ export default function NoteCard({ note}: { note: Note }) {
                 <div className='date'>{ note.time.slice(0, 4) + '-' + note.time.slice(4, 6) + '-' + note.time.slice(6, 8) }</div>
                 <div className='right-side'>
                   <div className='edit'>
-                    {note.ismine? <img src={require('./edit.png')} className='edit-item' onClick={clickEdit}></img> : null}
-                  </div>
+                    {note.ismine? <img src={require('./edit.png')} className='edit-item' onClick={clickEdit}></img> : null}                  </div>
                   <div className='star'>
                     {(note.star && note.ismine)? <img src={require('./star.png')} className='star-item'></img> 
                               : <img src={require('./unstar.png')} className='star-item'></img>}

@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { ConfigProvider, Tag, Button } from '@nutui/nutui-react-taro'
-
+import Taro from '@tarojs/taro'
 import { Todo } from '@/pages/index'
 import './collapse.scss'
-import Taro from '@tarojs/taro';
 
 
 export default function Collapse({ todo }: { todo: Todo }) {
@@ -22,26 +21,8 @@ export default function Collapse({ todo }: { todo: Todo }) {
     }
 
     const buttonClick = () => {
-        console.log('Button clicked.' + todo.id);
+        console.log('Button clicked.');
         Taro.navigateTo({url: `../../pages/new_todo/new_todo?param1=todo&param2=${todo.id}`});
-    }
-
-    const lessTime = (time: string) => {
-        if (time.length == 12 || time.length == 8) {
-            return (time.slice(4, 6) + '-' + time.slice(6, 8));
-        } else {
-            return time;
-        }
-    }
-
-    const moreTime = (time: string) => {
-        if (time.length == 12) {
-            return (time.slice(4, 6) + '-' + time.slice(6, 8) + ' ' + time.slice(8, 10) + ':' + time.slice(10, 12));
-        } else if (time.length == 8) {
-            return (time.slice(4, 6) + '-' + time.slice(6, 8));
-        } else {
-            return time;
-        }
     }
 
     const lessTime = (time: string) => {
