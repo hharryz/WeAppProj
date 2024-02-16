@@ -24,12 +24,12 @@ export default defineAppConfig({
     backgroundColor: '#fff',
     borderStyle: 'black',
     list: [
-      {
-        pagePath: 'pages/new/new',
-        text: '新建',
-        iconPath: 'assets/icon/new.png',
-        selectedIconPath: 'assets/icon/new-active.png',
-      },
+      // {
+      //   pagePath: 'pages/new/new',
+      //   text: '新建',
+      //   iconPath: 'assets/icon/new.png',
+      //   selectedIconPath: 'assets/icon/new-active.png',
+      // },
       {
         pagePath: 'pages/index/index',
         text: '主页',
