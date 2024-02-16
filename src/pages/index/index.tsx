@@ -292,4 +292,8 @@ export default function Index() {
 
 
   
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes
