@@ -10,6 +10,8 @@ export default defineAppConfig({
     'pages/new/new',
     'pages/moments/moments',
     'pages/new_todo/new_todo',
+    'pages/search/search',
+    'pages/edit/edit',
   ],
   window: {
     backgroundTextStyle: 'light',
@@ -24,10 +26,10 @@ export default defineAppConfig({
     borderStyle: 'black',
     list: [
       {
-        pagePath: 'pages/new/new',
-        text: '新建',
+        pagePath: 'pages/search/search',
+        text: '搜索',
         iconPath: 'assets/icon/new.png',
-        selectedIconPath: 'assets/icon/new-active.png',
+        selectedIconPath: 'assets/icon/new-active.png'
       },
       {
         pagePath: 'pages/index/index',

@@ -1,5 +1,7 @@
 import { PropsWithChildren } from 'react'
 import Taro, { useLaunch } from '@tarojs/taro'
+import { Provider } from '@tarojs/redux'
+import store from './store'
 import './app.scss'
 import '@nutui/nutui-react-taro/dist/style.css'
 

@@ -7,3 +7,46 @@
 .c_bg{
     background-color: bisque;
 }
+
+.c_ac {
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+  }
+  
+   .c_add{
+    background-color: transparent;//#5D6FBB;
+    border-radius: 100%;
+    color: white;
+    width:80px;
+    height: 80px;
+    display: flex;      
+    align-items: center;
+    justify-content: center;   
+   }
+   .c_cancel{
+    background-color: #5D6FBB;
+    border-radius: 100%;
+    color: white;
+    width:80px;
+    height: 80px;
+    display: flex;      
+    align-items: center;
+    justify-content: center; 
+   }
+  
+   .c1{
+    bottom: 0;
+    right: 0;
+   }
+  
+   .c2{
+    bottom: 0;
+    right: 50%;
+   }
+  
+   .c3{
+    bottom: 50%;
+    right: 0;
+   }
+  

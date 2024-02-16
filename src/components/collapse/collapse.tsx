@@ -1,10 +1,15 @@
 import { useState } from 'react'
 import { ConfigProvider, Tag, Button } from '@nutui/nutui-react-taro'
+<<<<<<< Updated upstream
+=======
+import { Todo } from '@/pages/index'
+>>>>>>> Stashed changes
 import './collapse.scss'
+import Taro from '@tarojs/taro';
 
 export default function Collapse() {
     const [isClicked, setIsClicked] = useState<boolean>(false);
-
+    var help = false;
     const tagTheme = {
         nutuiTagBackgroundColor: 'aquamarine',
     }
@@ -12,9 +17,28 @@ export default function Collapse() {
     const handleClick = () => {
         setIsClicked(!isClicked);
     }
-
+    var value;
     const buttonClick = () => {
         console.log('Button clicked.');
+        if(help == false){
+            //Taro.setStorageSync('value', '12');
+            value = 50;
+            help = true;//todo
+            Taro.navigateTo({
+                url:`../../pages/new_todo/new_todo?param1=todo&param2=${value}`,
+            });
+        }else{
+            //Taro.setStorageSync('value', '24');
+            value = 19;
+            help = false;
+            Taro.navigateTo({
+                url:`../../pages/new_todo/new_todo?param1=note&param2=${value}`,
+            });
+        }
+        
+
+         console.log('before switch'+value) ;
+        
     }
 
     const collapseContent = (click: boolean) => {

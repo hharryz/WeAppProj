@@ -192,7 +192,7 @@ export default function Form () {
   }
 
   const ClickFinish = async() => {
-    //if(NewOrEdit == false){
+    if(NewOrEdit == false){
       if(page == '0'){
       try {
         const res = await Taro.cloud.callContainer({
@@ -245,60 +245,60 @@ export default function Form () {
       } catch (err) {
         console.error(err);  // 打印错误信息
       }
-      }
-    // }else{
-    //   if(page == '0'){
-    //     try {
-    //       const res = await Taro.cloud.callContainer({
-    //         config: {
-    //           env: 'prod-7gbkokc9486b1064'
-    //         },
-    //         path: '/api/note',
-    //         header: {
-    //           'X-WX-SERVICE': 'myapp-demo',
-    //           'content-type': 'application/json'
-    //         },
-    //         method: 'POST',
-    //         data: {
-    //           userid: ID,
-    //           time: date,
-    //           tag: tagText,
-    //           mark: mark,
-    //           share: share,
-    //           star: star,
-    //           content: contentNote
-    //         }
-    //       });
-    //       console.log(res.data);  // 打印响应结果
-    //     } catch (err) {
-    //       console.error(err);  // 打印错误信息
-    //     }
-    //   }else if(page == '1'){
-    //     try {
-    //       const res = await Taro.cloud.callContainer({
-    //         config: {
-    //           env: 'prod-7gbkokc9486b1064'
-    //         },
-    //         path: '/api/todo',
-    //         header: {
-    //           'X-WX-SERVICE': 'myapp-demo',
-    //           'content-type': 'application/json'
-    //         },
-    //         method: 'POST',
-    //         data: {
-    //           userid: ID,
-    //           deadline: time,	//	截止日期
-    //           topic: topic, 		//	主题
-    //           content: contentTodo, 	//	内容
-    //           done: isdone		//	是否完成
-    //         }
-    //       });
-    //       console.log(res);  // 打印响应结果
-    //     } catch (err) {
-    //       console.error(err);  // 打印错误信息
-    //     }
-    // }
-    // }
+    }
+    }else{
+      if(page == '0'){
+        try {
+          const res = await Taro.cloud.callContainer({
+            config: {
+              env: 'prod-7gbkokc9486b1064'
+            },
+            path: '/api/note',
+            header: {
+              'X-WX-SERVICE': 'myapp-demo',
+              'content-type': 'application/json'
+            },
+            method: 'POST',
+            data: {
+              userid: ID,
+              time: date,
+              tag: tagText,
+              mark: mark,
+              share: share,
+              star: star,
+              content: contentNote
+            }
+          });
+          console.log(res.data);  // 打印响应结果
+        } catch (err) {
+          console.error(err);  // 打印错误信息
+        }
+      }else if(page == '1'){
+        try {
+          const res = await Taro.cloud.callContainer({
+            config: {
+              env: 'prod-7gbkokc9486b1064'
+            },
+            path: '/api/todo',
+            header: {
+              'X-WX-SERVICE': 'myapp-demo',
+              'content-type': 'application/json'
+            },
+            method: 'POST',
+            data: {
+              userid: ID,
+              deadline: time,	//	截止日期
+              topic: topic, 		//	主题
+              content: contentTodo, 	//	内容
+              done: isdone		//	是否完成
+            }
+          });
+          console.log(res);  // 打印响应结果
+        } catch (err) {
+          console.error(err);  // 打印错误信息
+        }
+    }
+    }
     ClickDelete();
     Taro.switchTab({
       url: '../index/index'
