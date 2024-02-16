@@ -1,5 +1,5 @@
 $unlicked-height: 120rpx;
-$clicked-height: 420rpx;
+$clicked-height: 330rpx;
 
 .collapse-card {
     width: 90%;
@@ -47,6 +47,7 @@ $clicked-height: 420rpx;
 .main-unclicked .time {
     margin-right: 3%;
     font-size: small;
+    font-weight: bold;
 }
 
 .main-clicked {
@@ -64,6 +65,7 @@ $clicked-height: 420rpx;
     width: 92%;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .card-header {
@@ -78,6 +80,7 @@ $clicked-height: 420rpx;
 .main-clicked .time {
     margin-right: 2.8%;
     font-size: small;
+    font-weight: bold;
 }
 
 .main-clicked .card-body {
@@ -90,7 +93,9 @@ $clicked-height: 420rpx;
     font-size: small;
 }
 
-.main-clicked .button {
-    margin-right: 5%;
-    margin-bottom: 5%;
+.card-footer {
+    position: absolute;
+    bottom: 2%;
+    right: 3%;
 }
+
