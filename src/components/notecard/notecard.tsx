@@ -11,29 +11,32 @@ export interface Note {
   share: boolean;
   star: boolean;
   content: string;
-}
-
-export interface User {
   name: string;
-  userid: string;
   avatar: string;
+  ismine: boolean;
 }
 
-export default function NoteCard({ note, user }: { note: Note, user: User }) {
+// export interface User {
+//   name: string;
+//   userid: string;
+//   avatar: string;
+// }
+
+export default function NoteCard({ note}: { note: Note }) {
 
     const images = [
-        {
-          src: 'https://t7.baidu.com/it/u=1700588201,792130339&fm=193&f=GIF'
-        },
-        {
-          src: 'https://t7.baidu.com/it/u=1032479594,2383177859&fm=193&f=GIF'
-        },
-        {
-          src: 'https://t7.baidu.com/it/u=3203007717,1062852813&fm=193&f=GIF'
-        },
-        {
-          src: 'https://t7.baidu.com/it/u=2291349828,4144427007&fm=193&f=GIF'
-        }
+        // {
+        //   src: 'https://t7.baidu.com/it/u=1700588201,792130339&fm=193&f=GIF'
+        // },
+        // {
+        //   src: 'https://t7.baidu.com/it/u=1032479594,2383177859&fm=193&f=GIF'
+        // },
+        // {
+        //   src: 'https://t7.baidu.com/it/u=3203007717,1062852813&fm=193&f=GIF'
+        // },
+        // {
+        //   src: 'https://t7.baidu.com/it/u=2291349828,4144427007&fm=193&f=GIF'
+        // }
     ];
 
     const rateTheme = {
@@ -66,9 +69,9 @@ export default function NoteCard({ note, user }: { note: Note, user: User }) {
         <div className='share-card'>
             <div className='header'>
                 <div className='avatar'>
-                    <Avatar size='small' src={user.avatar} />
+                    <Avatar size='small' src={note.avatar} />
                 </div>
-                <div className='nickname'>{ user.name }</div>
+                <div className='nickname'>{ note.name }</div>
                 <div className='tag'><ConfigProvider theme={tagTheme}><Tag>{ note.tag }</Tag></ConfigProvider></div>
             </div>
             <div className='main'>
@@ -111,10 +114,10 @@ export default function NoteCard({ note, user }: { note: Note, user: User }) {
                 <div className='date'>{ note.time.slice(0, 4) + '-' + note.time.slice(4, 6) + '-' + note.time.slice(6, 8) }</div>
                 <div className='right-side'>
                   <div className='edit'>
-                    {note.userid == user.userid? <img src={require('./edit.png')} className='edit-item'></img> : null}
+                    {note.ismine? <img src={require('./edit.png')} className='edit-item'></img> : null}
                   </div>
                   <div className='star'>
-                    {(note.star && note.userid == user.userid)? <img src={require('./star.png')} className='star-item'></img> 
+                    {(note.star && note.ismine)? <img src={require('./star.png')} className='star-item'></img> 
                               : <img src={require('./unstar.png')} className='star-item'></img>}
                   </div>
                   <div className='like' onClick={onLikeChange}>
@@ -122,6 +125,7 @@ export default function NoteCard({ note, user }: { note: Note, user: User }) {
                           : <img src={require('./unlike.png')} className='like-item'></img>}
                   </div>
                 </div>
+                
             </div>
         </div>
     )

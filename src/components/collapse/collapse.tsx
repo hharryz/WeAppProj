@@ -8,8 +8,12 @@ import './collapse.scss'
 export default function Collapse({ todo }: { todo: Todo }) {
     const [isClicked, setIsClicked] = useState<boolean>(false);
 
-    const tagTheme = {
-        nutuiTagBackgroundColor: 'aquamarine',
+    const doneTagTheme = {
+        nutuiTagBackgroundColor: '#77bba5',
+    }
+
+    const undoneTagTheme = {
+        nutuiTagBackgroundColor: '#d67976',
     }
 
     const handleClick = () => {
@@ -18,6 +22,24 @@ export default function Collapse({ todo }: { todo: Todo }) {
 
     const buttonClick = () => {
         console.log('Button clicked.');
+    }
+
+    const lessTime = (time: string) => {
+        if (time.length == 12 || time.length == 8) {
+            return (time.slice(4, 6) + '-' + time.slice(6, 8));
+        } else {
+            return time;
+        }
+    }
+
+    const moreTime = (time: string) => {
+        if (time.length == 12) {
+            return (time.slice(4, 6) + '-' + time.slice(6, 8) + ' ' + time.slice(8, 10) + ':' + time.slice(10, 12));
+        } else if (time.length == 8) {
+            return (time.slice(4, 6) + '-' + time.slice(6, 8));
+        } else {
+            return time;
+        }
     }
 
     const collapseContent = (click: boolean) => {
@@ -30,10 +52,10 @@ export default function Collapse({ todo }: { todo: Todo }) {
                             <div className='content'>
                                 <div className='head'>{ todo.topic }</div>
                                 <div className='tag'>
-                                    <ConfigProvider theme={tagTheme}><Tag>hahaaaa</Tag></ConfigProvider>
+                                    <ConfigProvider theme={todo.done? doneTagTheme : undoneTagTheme}><Tag>{todo.done? "DONE" : "UNDONE"}</Tag></ConfigProvider>
                                 </div>
                             </div>
-                            <div className='time'>02-17</div>
+                            <div className='time'>{ moreTime(todo.deadline) }</div>
                         </div>
                         <div className='card-body'>
                             { todo.content }
@@ -55,10 +77,16 @@ export default function Collapse({ todo }: { todo: Todo }) {
                 <div className='main-unclicked' onClick={handleClick}>
                     <div className='color-tag'></div>
                     <div className='content'>
-                        <div className='head'>{ todo.topic }</div>
-                        <div className='body'>{ todo.content }</div>
+                        <div className='head'>{ 
+                            todo.topic.length > 10? 
+                            (todo.topic.slice(0, 10) + '...') : todo.topic
+                        }</div>
+                        <div className='body'>{ 
+                            todo.content.length > 15? 
+                            (todo.content.slice(0, 15) + '...') : todo.content
+                        }</div>
                     </div>
-                    <div className='time'>{ todo.deadline }</div>
+                    <div className='time'>{ lessTime(todo.deadline) }</div>
                 </div>
             );
         }

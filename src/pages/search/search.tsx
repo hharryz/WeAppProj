@@ -21,12 +21,15 @@ export interface Note {
   share: boolean;
   star: boolean;
   content: string;
+  name:string;
+  avatar:string;
+  ismine:boolean;
 }
 
 export interface User {
-  name: string;
-  userid: string;
-  avatar: string;
+  name:string;
+  avatar:string;
+  ismine:boolean;
 }
 
 const SearchPage: React.FC = () => {  
@@ -39,11 +42,6 @@ const SearchPage: React.FC = () => {
     nutuiCellBorderRadius:'20px',
     nutuiCellMargin:'10px'
   }
-  const user: User = {  
-    name: "John Doe",  
-    userid: "user123",  
-    avatar: "https://example.com/avatar.jpg",  
-  };  
   const [show1, setShow1] = useState(false);
   const [desc1, setDesc1] = useState('选择日期');
   const [desc2, setDesc2] = useState('');
@@ -57,6 +55,7 @@ const SearchPage: React.FC = () => {
   const [todoList, setTodoList] = useState<Todo[]>([]);
   const [noteList, setNoteList] = useState<Note[]>([]);
   const [searchList, setSearchList] = useState<Note[]>([]);
+  const [user,setUser] = useState<User>({name:'test', avatar:'test', ismine:false});
   const [visible, setVisible] = useState(false)
   const [baseDesc, setBaseDesc] = useState('选择标签')
   const [tag, setTag] = useState('None')
@@ -84,8 +83,31 @@ const SearchPage: React.FC = () => {
     })
     setBaseDesc(description)
   }
-
-
+  useEffect( () => {
+    Taro.cloud.callContainer({
+      "config": {
+        "env": "prod-7gbkokc9486b1064"
+      },
+      "path": `/api/login?me=true`,
+      "header": {
+        "X-WX-SERVICE": "myapp-demo",
+        "content-type": "application/json"
+      },
+      "method": "GET",
+    }).then(res => {
+      console.log(res.data)
+      setUser({
+          name:res.data.data.name,
+          avatar:res.data.data.avatar,
+          ismine:res.data.data.avatar,
+        }
+      )
+      console.log("User information refreshed.")
+    }).catch(err => {
+      console.log(err)
+    })
+  },[]);
+  console.log(user);
   useEffect(() => {  
     if(tag==='film'){
       set1Color('#5d6fbb'); set2Color('white'); set3Color('white');
@@ -134,32 +156,41 @@ const SearchPage: React.FC = () => {
         share: item.share,
         star: item.star,
         content: item.content,
+        name:user.name,
+        avatar:user.avatar,
+        ismine:user.ismine
       }
       return note
     })):(tag==='other'?(
       res.data.data.filter(item => item.tag !== 'film' && item.tag !== 'music' && item.tag !== 'note' && item.tag !== 'book').map(item => {  
         const note : Note = {  
-          id: item.id,  
+          id: item.id,
           userid:item.userid,
-          time: item.time,  
-          tag: item.tag,  
-          mark: item.mark,  
-          share: item.share,  
-          star: item.star,  
-          content: item.content,  
+          time: item.time,
+          tag: item.tag,
+          mark: item.mark,
+          share: item.share,
+          star: item.star,
+          content: item.content,
+          name:user.name,
+          avatar:user.avatar,
+          ismine:user.ismine,
         };  
         return note;  
       })
     ):(res.data.data.filter(item => (item.tag) === tag).map(item => {  
       const note : Note = {  
-        id: item.id,  
+        id: item.id,
         userid:item.userid,
-        time: item.time,  
-        tag: item.tag,  
-        mark: item.mark,  
-        share: item.share,  
-        star: item.star,  
-        content: item.content,  
+        time: item.time,
+        tag: item.tag,
+        mark: item.mark,
+        share: item.share,
+        star: item.star,
+        content: item.content,
+        name:user.name,
+        avatar:user.avatar,
+        ismine:user.ismine, 
       };  
       return note;  
     })));
@@ -222,7 +253,6 @@ const SearchPage: React.FC = () => {
       setTag('other');
     }
   };  
-
   const handleAll = () => {  
     if(tag ==='all'){
       setTag('none');
@@ -252,14 +282,17 @@ const SearchPage: React.FC = () => {
           console.log(res.data)
       var filteredSearchs = res.data.data.filter(item => (item.content.includes(searchInput))).map(item => {  
         const search : Note = {  
-          id: item.id,  
+          id: item.id,
           userid:item.userid,
-          time: item.time,  
-          tag: item.tag,  
-          mark: item.mark,  
-          share: item.share,  
-          star: item.star,  
-          content: item.content,  
+          time: item.time,
+          tag: item.tag,
+          mark: item.mark,
+          share: item.share,
+          star: item.star,
+          content: item.content,
+          name:item.name,
+          avatar:item.avatar,
+          ismine:item.ismine 
         };  
         return search;  
       });  
@@ -288,14 +321,17 @@ const SearchPage: React.FC = () => {
           console.log(res.data)
       var filteredSearchs = res.data.data.filter(item => (item.content.includes(searchInput))&&(item.time==desc2)).map(item => {  
         const search : Note = {  
-          id: item.id,  
+          id: item.id,
           userid:item.userid,
-          time: item.time,  
-          tag: item.tag,  
-          mark: item.mark,  
-          share: item.share,  
-          star: item.star,  
-          content: item.content,  
+          time: item.time,
+          tag: item.tag,
+          mark: item.mark,
+          share: item.share,
+          star: item.star,
+          content: item.content,
+          name:item.name,
+          avatar:item.avatar,
+          ismine:item.ismine, 
         };  
         return search;  
       });  
@@ -324,26 +360,32 @@ const SearchPage: React.FC = () => {
           console.log(res.data)
       var filteredSearchs = baseDesc==='other'? res.data.data.filter(item => item.tag !== 'film' && item.tag !== 'music' && item.tag !== 'note' && item.tag !== 'book' && item.content.includes(searchInput)).map(item => {  
         const search : Note = {  
-          id: item.id,  
+          id: item.id,
           userid:item.userid,
-          time: item.time,  
-          tag: item.tag,  
-          mark: item.mark,  
-          share: item.share,  
-          star: item.star,  
-          content: item.content,  
+          time: item.time,
+          tag: item.tag,
+          mark: item.mark,
+          share: item.share,
+          star: item.star,
+          content: item.content,
+          name:item.name,
+          avatar:item.avatar,
+          ismine:item.ismine,  
         };  
         return search;  
       }):res.data.data.filter(item => item.tag===baseDesc&&item.content.includes(searchInput)).map(item => {  
         const search : Note = {  
-          id: item.id,  
+          id: item.id,
           userid:item.userid,
-          time: item.time,  
-          tag: item.tag,  
-          mark: item.mark,  
-          share: item.share,  
-          star: item.star,  
-          content: item.content,  
+          time: item.time,
+          tag: item.tag,
+          mark: item.mark,
+          share: item.share,
+          star: item.star,
+          content: item.content,
+          name:item.name,
+          avatar:item.avatar,
+          ismine:item.ismine, 
         };  
         return search;  
       });  
@@ -373,28 +415,34 @@ const SearchPage: React.FC = () => {
       var filteredSearchs = baseDesc==='other'? 
       res.data.data.filter(item => item.tag !== 'film' && item.tag !== 'music' && item.tag !== 'note' && item.tag !== 'book' && item.time===desc2 && item.content.includes(searchInput)).map(item => {  
         const search : Note = {  
-          id: item.id,  
+          id: item.id,
           userid:item.userid,
-          time: item.time,  
-          tag: item.tag,  
-          mark: item.mark,  
-          share: item.share,  
-          star: item.star,  
-          content: item.content,  
+          time: item.time,
+          tag: item.tag,
+          mark: item.mark,
+          share: item.share,
+          star: item.star,
+          content: item.content,
+          name:item.name,
+          avatar:item.avatar,
+          ismine:item.ismine, 
         };  
         return search;  
       })
       :
       res.data.data.filter(item => item.tag===baseDesc&&item.time===desc2&&item.content.includes(searchInput)).map(item => {  
         const search : Note = {  
-          id: item.id,  
+          id: item.id,
           userid:item.userid,
-          time: item.time,  
-          tag: item.tag,  
-          mark: item.mark,  
-          share: item.share,  
-          star: item.star,  
-          content: item.content,  
+          time: item.time,
+          tag: item.tag,
+          mark: item.mark,
+          share: item.share,
+          star: item.star,
+          content: item.content,
+          name:item.name,
+          avatar:item.avatar,
+          ismine:item.ismine, 
         };  
         return search;  
       });  
@@ -470,7 +518,7 @@ const SearchPage: React.FC = () => {
       <div className='moments'>
         {  
           noteList.map(note => (  
-            <NoteCard note={note} user={user} />  
+            <NoteCard note={note} />  
           ))   
         }  
       </div>
@@ -515,7 +563,7 @@ const SearchPage: React.FC = () => {
       <div className='moments'>
         {  
           searchList.map(note => (  
-            <NoteCard note={note} user={user} />  
+            <NoteCard note={note} />  
           ))   
         }  
       </div>

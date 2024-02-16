@@ -1,66 +1,75 @@
 .page {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .mycard {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    height: 155rpx;
-    border-radius: 30rpx;
-    background-color: rgba(240, 248, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  height: 155rpx;
+  border-radius: 30rpx;
+  background-color: #f8f8f850;
 }
 
 .change-card {
-    display: flex;
-    flex-direction: row;
-    width: 80%;
-    height: 155rpx;
-    border-radius: 30rpx;
-    background-color: rgba(240, 248, 255, 0.3);
-    align-items: center;
-    padding-left: 30rpx;
+  display: flex;
+  flex-direction: row;
+  width: 85%;
+  height: 155rpx;
+  border-radius: 30rpx;
+  background-color: #f8f8f850;
+  align-items: center;
+  padding-left: 30rpx;
 }
 
 .namecard-wrapper {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-left: 3%;
-    margin-right: 3%;
-    // padding-top: 20rpx;
-    // padding-bottom: 20rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 3%;
+  margin-right: 3%;
+  // padding-top: 20rpx;
+  // padding-bottom: 20rpx;
+}
+
+.input-box {
+  background-color: white;
+  border-radius: 20rpx;
+  height: 65rpx;
+  padding-left: 20rpx;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+  color: #5d6fbb;
 }
 
 .avatar-wrapper {
-    width: 120rpx;
-    height: 150rpx;
-    padding-top: 25rpx;
-    border: none;
-    align-items: center;
-    display: flex;
-    justify-content: center;
+  width: 120rpx;
+  height: 150rpx;
+  padding-top: 25rpx;
+  border: none;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 .myinfo {
-    display: flex;
-    flex-direction: column;
-    margin-left: 20rpx;
-    width: 60%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20rpx;
+  width: 60%;
 }
 
 .nickname {
-    font-size: medium;
-    font-weight: bold;
+  font-size: medium;
+  font-weight: bold;
 }
 
 .calendar-wrapper {
-    margin-top: 20rpx;
-    width: 85%;
+  margin-top: 20rpx;
+  width: 85%;
 }
 
 .index {
-    font-size: larger;
+  font-size: larger;
 }
