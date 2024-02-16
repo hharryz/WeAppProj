@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import Taro, { useLoad } from "@tarojs/taro"
 // import Taro, { useLoad } from '@tarojs/taro'
 import './moments.scss'
+import Bubble_add from "@/components/bubble_add/bubble_add"
 
 // import { Note, User } from '@/components/notecard/notecard'
 
@@ -232,9 +233,18 @@ export default function Moments() {
         // getUsers()
         // console.log("noteList: ", noteList)
     })
+
+    const ClickFresh = () => {
+        console.log('click');
+        getAllNotes()
+    }
+    
     return (
         <div className='moments'>
-            
+            <Bubble_add />
+            <div className='c_fresh' onClick={ClickFresh}>
+                <img src={require('./refresh.png')} width={'100%'} height={'100%'} />
+            </div>
             {noteList.map((item) => {
                 // console.log(item)
                 return (

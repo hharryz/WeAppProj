@@ -6,6 +6,8 @@ import Collapse from '@/components/collapse/collapse'
 import { Input }from '@tarojs/components'
 import './index.scss'
 import { get } from 'http'
+import Bubble_add from '@/components/bubble_add/bubble_add'
+import Bubble_fresh from '@/components/bubble_fresh/bubble_fresh'
 
 export interface Todo {
   id: number;
@@ -261,6 +263,11 @@ export default function Index() {
       )
     }
 
+    const ClickFresh = () => {
+      console.log('click');
+      getTodos()
+  }
+
   return (
     <div className='page'>
       { isChanged ? changedCard() : unchangedCard()}
@@ -276,7 +283,7 @@ export default function Index() {
         </ConfigProvider>
       </div>
       { displayTodos() }
-      <Sticky threshold={0} position='bottom'>
+      {/* <Sticky threshold={0} position='bottom'>
         <Button onClick={ButtonOnChange} size='large'
           style={{
             margin: 8,
@@ -285,7 +292,11 @@ export default function Index() {
             '--nutui-button-default-color': '#fff',
             '--nutui-button-default-background-color': '#5d6fbb',
         }}>搜索与收藏</Button>
-      </Sticky>
+      </Sticky> */}
+      <Bubble_add />
+      <div className='c_fresh' onClick={ClickFresh}>
+            <img src={require('./refresh.png')} width={'100%'} height={'100%'} />
+        </div>
     </div>
   )
 

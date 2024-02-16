@@ -1,7 +1,7 @@
 // searchPage.scss  
 
 .search-container {  
-  padding: 20px;  
+  padding: 20px;
   
   .search-bar {  
     display: flex;  
@@ -83,3 +83,101 @@
     color:#5d6fbb;
   }  
 }  
+
+
+.share-card {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  border-radius: 30rpx;
+  background-color: #f8f8f880;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 20rpx;
+}
+
+.avatar {
+  width: 15%;
+}
+
+.nickname {
+  font-size: medium;
+  font-weight: normal;
+  width: 75%;
+}
+
+.main {
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.display-image {
+  display: flex;
+  flex-direction: row;
+  margin-left: 3%;
+}
+
+.image-item {
+  border-radius: 20rpx;
+}
+
+.rate {
+  margin-top: 20rpx;
+  margin-left: 3%;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.date {
+  font-size: smaller;
+  color: darkgrey;
+}
+
+.right-side {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.like-item {
+  width: 45rpx;
+  height: 45rpx;
+  margin-right: 10rpx;
+}
+
+.star-item {
+  width: 45rpx;
+  height: 45rpx;
+  margin-right: 20rpx;
+}
+
+.edit-item {
+  width: 45rpx;
+  height: 45rpx;
+  margin-right: 20rpx;
+}
+
+.moments {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
