@@ -1,6 +1,7 @@
 import { Avatar, Tag, Ellipsis, ImagePreview, Rate, ConfigProvider } from '@nutui/nutui-react-taro'
 import React, { useState } from 'react'
 import './notecard.scss'
+import Taro from '@tarojs/taro';
 
 export interface Note {
   id: number;
@@ -38,6 +39,11 @@ export default function NoteCard({ note}: { note: Note }) {
         //   src: 'https://t7.baidu.com/it/u=2291349828,4144427007&fm=193&f=GIF'
         // }
     ];
+
+    const clickEdit = () => {
+      console.log('click! ' + note.id);
+      Taro.navigateTo({url: `../../pages/new_todo/new_todo?param1=note&param2=${note.id}`})
+    }
 
     const rateTheme = {
         nutuiRateItemMargin: '1rpx',
@@ -114,7 +120,11 @@ export default function NoteCard({ note}: { note: Note }) {
                 <div className='date'>{ note.time.slice(0, 4) + '-' + note.time.slice(4, 6) + '-' + note.time.slice(6, 8) }</div>
                 <div className='right-side'>
                   <div className='edit'>
+<<<<<<< Updated upstream
                     {note.ismine? <img src={require('./edit.png')} className='edit-item'></img> : null}
+=======
+                    {note.ismine? <img src={require('./edit.png')} className='edit-item' onClick={clickEdit}></img> : null}
+>>>>>>> Stashed changes
                   </div>
                   <div className='star'>
                     {(note.star && note.ismine)? <img src={require('./star.png')} className='star-item'></img> 
