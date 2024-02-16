@@ -3,7 +3,9 @@ import { ConfigProvider, CalendarCard, Sticky, Button, Avatar, Tag } from '@nutu
 import Taro, { useLoad } from '@tarojs/taro'
 import { useState, useEffect } from 'react'
 import Collapse from '@/components/collapse/collapse'
+import { Input }from '@tarojs/components'
 import './index.scss'
+import { get } from 'http'
 
 export interface Todo {
   id: number;
@@ -13,89 +15,90 @@ export interface Todo {
   done: boolean;
 }
 
+export interface Note {
+  id: number;
+  time: string;
+  tag: string;
+  mark: number;
+  share: boolean;
+  star: boolean;
+  content: string;
+}
+
 export default function Index() {
   
   useLoad(() => {
-    // Taro.getStorage({
-    //   key: 'userid',
-    //   success: function (res) {
-    //     console.log(res.data)
-    //   }
-    // })
-    // const res = Taro.cloud.callContainer({
-    //   "config": {
-    //     "env": "prod-7gbkokc9486b1064"
-    //   },
-    //   "path": `/api/todo`,
-    //   "header": {
-    //     "X-WX-SERVICE": "myapp-demo",
-    //     // "X-WX-OPENID": "2",
-    //     "content-type": "application/json"
-    //   },
-    //   "method": "GET",
-    //   // "method": "GET",
-    //   "data": {
-    //     // "userid": 2,
-    //     "deadline": "2024-02-17 10:10:14",
-    //     "topic": "hahaaaa",
-    //     "content": "faeafeaffa",
-    //     "done": false,
-    //   }
-      // "data": {
-        // "id": 7,
-        // "userid": 3,
-        // "time": "2024-02-17 10:10:10",
-        // "tag": "hahaaaa",
-        // "mark": 2,
-        // "share": true,
-        // "star": true,
-        // "content": "“当她一个人走在空空的路上，空空的草地里，空空的山谷，走啊走啊的时候，她心里会不停地想到什么呢？那时她也如同空了一般。又由于永远也不会有人看到她这副赤裸的样子，她也不会为“有可能会被人看见”而滋生额外的羞耻之心。她脚步自由，神情自由。自由就是自然吧？而她又多么孤独。自由就是孤独吧？而她对这孤独无所谓，自由就是对什么都无所谓吧？”"
-      // }
-    // })
-
-    // console.log(res)
-
+    getTodos()
+    getUserInfo()
     console.log('Page loaded.')
   })
 
-  // const [todoNum, setTodoNum] = useState<number>(0)
+  const [myuserId, setMyuserId] = useState<string>('')
+  const getUserInfo = () => {
+    Taro.cloud.callContainer({
+      "config": {
+        "env": "prod-7gbkokc9486b1064"
+      },
+      "path": "/api/login?me=true",
+      "header": {
+        "X-WX-SERVICE": "myapp-demo",
+        "content-type": "application/json"
+      },
+      "method": "GET",
+    }).then(res => {
+      console.log(res.data)
+      setAvatar(res.data.data.avatar)
+      setNicknameValue(res.data.data.name)
+      setCodeValue(res.data.data.code)
+      setMyuserId(res.data.data.userid)
+    }).catch(err => {
+      console.log(err)
+    })
+  }
+
+
+  const getTodos = async () => {
+    Taro.cloud.callContainer({
+      "config": {
+        "env": "prod-7gbkokc9486b1064"
+      },
+      "path": `/api/todo`,
+      "header": {
+        "X-WX-SERVICE": "myapp-demo",
+        "content-type": "application/json"
+      },
+      "method": "GET",
+    }).then(res => {
+      console.log(res.data)
+      setTodoList( res.data.data.map((item: any) => {
+        const todo: Todo = {
+          id: item.id,
+          deadline: item.deadline,
+          topic: item.topic,
+          content: item.content,
+          done: item.done
+        }
+        return todo
+      }))
+      console.log("todoList refreshed.")
+    }).catch(err => {
+      console.log(err)
+    })
+  }
+
   const [todoList, setTodoList] = useState<Todo[]>([])
 
-  useEffect(() => {
-    const getTodos = () => {
-      Taro.cloud.callContainer({
-        "config": {
-          "env": "prod-7gbkokc9486b1064"
-        },
-        "path": `/api/todo`,
-        "header": {
-          "X-WX-SERVICE": "myapp-demo",
-          "content-type": "application/json"
-        },
-        "method": "GET",
-      }).then(res => {
-        console.log(res.data)
-        setTodoList( res.data.data.map((item: any) => {
-          // if 
-          const todo: Todo = {
-            id: item.id,
-            deadline: item.deadline,
-            topic: item.topic,
-            content: item.content,
-            done: item.done
-          }
-          return todo
-        }))
-        console.log("todoList refreshed.")
-        // setTodoNum(todoList.length)
-      }).catch(err => {
-        console.log(err)
-      })
-    }
-    getTodos()
-  }, [])
-
-  // getTodos()
+  const displayTodos = () => {
+    return todoList.map((todo: Todo) => {
+      var todoDate = parseInt(todo.deadline.slice(0, 4)) + '-' + parseInt(todo.deadline.slice(4, 6)) + '-' +  parseInt(todo.deadline.slice(6, 8))
+      // console.log("1", todoDate, "2", chooseDate)
+      if (chooseDate == "" && new Date() < new Date(todoDate)) {
+        return <Collapse todo={todo} key={todo.id} />
+      } else if (chooseDate == todoDate) {
+        return <Collapse todo={todo} key={todo.id} />
+      }
+    })
+  }
 
     const calendarTheme = {
       nutuiColorPrimary: '#5d6fbb',
@@ -103,66 +106,121 @@ export default function Index() {
       nutuiCalendarDayActiveBorderRadius: '20px',
     }
 
-    const buttonTheme = {
-      margin: '8',
-      nutuiButtonDefaultColor: '#fff',
-      nutuiButtonDefaultBackgroundColor: '#5d6fbb',
-      nutuiButtonDefaultBorderColor: '#5d6fbb',
-    }
-
-    const marginStyle = { margin: 8 }
-
-    const date = new Date();
-    const onChange = (val) => {
+    var accDate = new Date()
+    var today = accDate.getFullYear() + '-' + (accDate.getMonth() + 1) + '-' + accDate.getDate()
+    const [chooseDate, setChooseDate] = useState<string>(today)
+    const onChange = (val: Date) => {
+      if (val == null) { 
+        setChooseDate("") 
+      } else {
+        setChooseDate(val.getFullYear() + '-' + (val.getMonth() + 1) + '-' + val.getDate())
+      }
       console.log(val);
     };
 
-    // const day = {
-    //   date: 8,
-    //   type: 'normal',
-    //   selected: false,
-    //   disabled: false,
-    //   bottomInfo: '节日'
-    // }
-
     const renderDayTop = (day) => {
-      let val;
-      switch (day.date) {
-        case 8:
-          val = '☺';
-          break;
-        case 9:
-          val = '☹';
-          break;
-        default:
-          val = '';
-          break;
+      if (day.year == accDate.getFullYear() && day.month == accDate.getMonth() + 1 && day.date == accDate.getDate()) {
+        return '●'
       }
-      return val;
     }
     const renderDay = (day) => {
       return day.date <= 9 ? `0${day.date}` : day.date
     }
     const renderDayBottom = (day) => {
-      return day.date === 8 ? '节日' : ''
+      var thing = false
+      todoList.map((item) => {
+        if (parseInt(item.deadline.slice(0, 4)) == day.year && parseInt(item.deadline.slice(4, 6)) == day.month 
+            && parseInt(item.deadline.slice(6, 8)) == day.date) {
+          thing = true
+        }
+      })
+
+      return thing? '▲' : ''
     }
 
     const ButtonOnChange = () => {
       console.log('Button clicked.')
       Taro.navigateTo({
-        url: '/pages/moments/moments'
+        url: '/pages/new/new'
       })
     }
     const [avatar, setAvatar] = useState<string>('https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0')
     const ChooseAvatar = (e) => {
       console.log('Avatar clicked.', e.detail)
-      setAvatar(e.detail.avatarUrl)
+      Taro.cloud.uploadFile({
+        cloudPath: `avatar/${myuserId}.png`, // 对象存储路径，根路径直接填文件名，文件夹例子 test/文件名，不要 / 开头
+        filePath: e.detail.avatarUrl, // 微信本地文件，通过选择图片，聊天文件等接口获取
+        config: {
+          env: 'prod-7gbkokc9486b1064' // 需要替换成自己的微信云托管环境ID
+        }
+      }).then(res => {
+        console.log(res.fileID)
+        setAvatar(res.fileID)
+        Taro.cloud.callContainer({
+          "config": {
+            "env": "prod-7gbkokc9486b1064"
+          },
+          "path": "/api/login",
+          "header": {
+            "X-WX-SERVICE": "myapp-demo",
+            "content-type": "application/json"
+          },
+          "method": "POST",
+          "data": {
+            "name": nicknameValue,
+            "avatar": avatar,
+            "code": codeValue,
+          }
+        })
+      }).catch(error => {
+        console.error(error)
+      })
     }
+
+    useEffect(() => {
+      console.log('Avatar changed.')
+    }, [avatar])
+
+    const [nicknameValue, setNicknameValue] = useState<string>('')
+    const handleNicknameChange = (event) => {
+      console.log(event.detail.value)
+      setNicknameValue(event.detail.value)
+    }
+
+    const [codeValue, setCodeValue] = useState<string>('')
+    const handleCodeChange = (event) => {
+      console.log(event.detail.value)
+      setCodeValue(event.detail.value)
+    }
+
     const [isChanged, setIsChanged] = useState<boolean>(false)
     const onChangeTo = () => {
       setIsChanged(!isChanged)
       console.log('Button clicked.')
     }
+
+    const onConfirmLogin = () => {
+      setIsChanged(!isChanged)
+      console.log('Button clicked.')
+      const res = Taro.cloud.callContainer({
+        "config": {
+          "env": "prod-7gbkokc9486b1064"
+        },
+        "path": "/api/login",
+        "header": {
+          "X-WX-SERVICE": "myapp-demo",
+          "content-type": "application/json"
+        },
+        "method": "POST",
+        "data": {
+          "name": nicknameValue,
+          "avatar": avatar,
+          "code": codeValue,
+        }
+      })
+      console.log(res)
+    }
+
     const unchangedCard = () => {
       return (<div className='mycard'>
                 <div className='namecard-wrapper'>
@@ -170,7 +228,7 @@ export default function Index() {
                     <Avatar src={avatar} size='large'></Avatar>
                   </Button>
                   <div className='myinfo'>
-                    <input className='nickname' type='nickname' placeholder='请输入昵称' />
+                    <Input className='nickname' type='nickname' placeholder='请输入昵称' onInput={handleNicknameChange} value={nicknameValue} />
                     <div className='tag'><Tag>0217</Tag></div>
                   </div>
                   <Button onClick={onChangeTo} style={{
@@ -186,8 +244,8 @@ export default function Index() {
     const changedCard = () => {
       return (
         <div className='change-card'>
-          <div className='box'><input placeholder='Code' /></div>
-            <Button onClick={onChangeTo} style={{
+          <div className='box'><Input className='input-box' placeholder='Code' value={codeValue} onInput={handleCodeChange} /></div>
+            <Button onClick={onConfirmLogin} style={{
                     margin: 8,
                     '--nutui-button-default-border-color': '#5d6fbb',
                     '--nutui-button-default-color': '#fff',
@@ -209,7 +267,7 @@ export default function Index() {
       <div className='calendar-wrapper'>
         <ConfigProvider theme={calendarTheme}>
           <CalendarCard
-            defaultValue={date} 
+            defaultValue={new Date()} 
             onChange={onChange}
             renderDayTop={renderDayTop}
             renderDay={renderDay}
@@ -217,9 +275,7 @@ export default function Index() {
           />
         </ConfigProvider>
       </div>
-      { todoList.map((todo: Todo) => {
-        return <Collapse todo={todo} key={todo.id} />
-      })}
+      { displayTodos() }
       <Sticky threshold={0} position='bottom'>
         <Button onClick={ButtonOnChange} size='large'
           style={{
@@ -232,4 +288,8 @@ export default function Index() {
       </Sticky>
     </div>
   )
+
+
+
+  
 }

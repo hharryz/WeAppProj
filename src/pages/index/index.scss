@@ -7,19 +7,19 @@
 .mycard {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 85%;
     height: 155rpx;
     border-radius: 30rpx;
-    background-color: rgba(240, 248, 255, 0.3);
+    background-color: #f8f8f850;
 }
 
 .change-card {
     display: flex;
     flex-direction: row;
-    width: 80%;
+    width: 85%;
     height: 155rpx;
     border-radius: 30rpx;
-    background-color: rgba(240, 248, 255, 0.3);
+    background-color: #f8f8f850;
     align-items: center;
     padding-left: 30rpx;
 }
@@ -32,6 +32,15 @@
     margin-right: 3%;
     // padding-top: 20rpx;
     // padding-bottom: 20rpx;
+}
+
+.input-box {
+    background-color: white;
+    border-radius: 20rpx;
+    height: 65rpx;
+    padding-left: 20rpx;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+    color: #5d6fbb;
 }
 
 .avatar-wrapper {
