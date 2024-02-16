@@ -1,9 +1,16 @@
+// import Taro from '@tarojs/taro'
+// import  React, { useState, useEffect} from "react";
+// import { ActionSheet } from '@nutui/nutui-react-taro';
+
 export default defineAppConfig({
+
+
   pages: [
     'pages/index/index',
     'pages/new/new',
     'pages/moments/moments',
-    'pages/search/search',
+    'pages/new_todo/new_todo',
+    'pages/search/search'
   ],
   window: {
     backgroundTextStyle: 'light',
@@ -40,7 +47,7 @@ export default defineAppConfig({
         text: '搜索',
         iconPath: 'assets/icon/palette.png',
         selectedIconPath: 'assets/icon/search-category-active.png'
-      },
+      }
     ]
   },
 

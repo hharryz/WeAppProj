@@ -2,8 +2,24 @@ import { Avatar, Tag, Ellipsis, ImagePreview, Rate, ConfigProvider } from '@nutu
 import React, { useState } from 'react'
 import './notecard.scss'
 
-export default function NoteCard() {
-    const content = '注意！这是一篇笔记！注意！这是一篇笔记！注意！这是一篇笔记！注意！这是一篇笔记！注意！这是一篇笔记！注意！这是一篇笔记！注意！这是一篇笔记！注意！这是一篇笔记！注意！这是一篇笔记！注意！这是一篇笔记！注意！这是一篇笔记！注意！这是一篇笔记！注意！这是一篇笔记！注意！这是一篇笔记！'
+export interface Note {
+  id: number;
+  userid: string;
+  time: string;
+  tag: string;
+  mark: number;
+  share: boolean;
+  star: boolean;
+  content: string;
+}
+
+export interface User {
+  name: string;
+  userid: string;
+  avatar: string;
+}
+
+export default function NoteCard({ note, user }: { note: Note, user: User }) {
 
     const images = [
         {
@@ -36,18 +52,28 @@ export default function NoteCard() {
         setShowPreview(false)
     }
 
+    const [like, setLike] = useState<boolean>(false)
+    const onLikeChange = () => {
+        console.log('like changed.')
+        setLike(!like)
+    }
+
+    const tagTheme = {
+      nutuiTagBackgroundColor: '#77bba5',
+    }
+
     return (
         <div className='share-card'>
             <div className='header'>
                 <div className='avatar'>
-                    <Avatar size='small' src='https://img12.360buyimg.com/imagetools/jfs/t1/143702/31/16654/116794/5fc6f541Edebf8a57/4138097748889987.png' />
+                    <Avatar size='small' src={user.avatar} />
                 </div>
-                <div className='nickname'>Me</div>
-                <div className='tag'><Tag>#tag</Tag></div>
+                <div className='nickname'>{ user.name }</div>
+                <div className='tag'><ConfigProvider theme={tagTheme}><Tag>{ note.tag }</Tag></ConfigProvider></div>
             </div>
             <div className='main'>
                     <Ellipsis 
-                      content={content}
+                      content={note.content}
                       direction='end'
                       expandText='全部 →' 
                       collapseText='收起'
@@ -77,13 +103,25 @@ export default function NoteCard() {
                   onClose={hideFn}
                 />
             </div>
+            { note.mark? 
             <div className='rate'>
-                <ConfigProvider theme={rateTheme}><Rate value={3} readOnly /></ConfigProvider>
-            </div>
+                <ConfigProvider theme={rateTheme}><Rate value={note.mark} readOnly /></ConfigProvider>
+            </div> : null }
             <div className='footer'>
-                <div className='date'>2024-2-17</div>
-                <div className='thumbup'></div>
-                <div className='comment'></div>
+                <div className='date'>{ note.time.slice(0, 4) + '-' + note.time.slice(4, 6) + '-' + note.time.slice(6, 8) }</div>
+                <div className='right-side'>
+                  <div className='edit'>
+                    {note.userid == user.userid? <img src={require('./edit.png')} className='edit-item'></img> : null}
+                  </div>
+                  <div className='star'>
+                    {(note.star && note.userid == user.userid)? <img src={require('./star.png')} className='star-item'></img> 
+                              : <img src={require('./unstar.png')} className='star-item'></img>}
+                  </div>
+                  <div className='like' onClick={onLikeChange}>
+                    {like? <img src={require('./like.png')} className='like-item'></img> 
+                          : <img src={require('./unlike.png')} className='like-item'></img>}
+                  </div>
+                </div>
             </div>
         </div>
     )

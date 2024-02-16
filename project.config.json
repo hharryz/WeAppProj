@@ -2,7 +2,7 @@
   "miniprogramRoot": "dist/",
   "projectname": "myApp",
   "description": "",
-  "appid": "wxe825b76218ff45ed",
+  "appid": "wxd36d0f07f2b16d49",
   "setting": {
     "urlCheck": true,
     "es6": false,
@@ -10,6 +10,8 @@
     "compileHotReLoad": false,
     "postcss": false,
     "minified": false,
+    "ignoreDevUnusedFiles": false,
+    "ignoreUploadUnusedFiles": false,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],

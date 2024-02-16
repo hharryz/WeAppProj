@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import { ConfigProvider, Tag, Button } from '@nutui/nutui-react-taro'
+
+import { Todo } from '@/pages/index'
 import './collapse.scss'
 
-export default function Collapse() {
+
+export default function Collapse({ todo }: { todo: Todo }) {
     const [isClicked, setIsClicked] = useState<boolean>(false);
 
     const tagTheme = {
@@ -25,7 +28,7 @@ export default function Collapse() {
                     <div className='card-content'>
                         <div className='card-header' onClick={handleClick}>
                             <div className='content'>
-                                <div className='head'>微信小程序大作业</div>
+                                <div className='head'>{ todo.topic }</div>
                                 <div className='tag'>
                                     <ConfigProvider theme={tagTheme}><Tag>hahaaaa</Tag></ConfigProvider>
                                 </div>
@@ -33,13 +36,16 @@ export default function Collapse() {
                             <div className='time'>02-17</div>
                         </div>
                         <div className='card-body'>
-                            众所周知，微信小程序是一款。。。众所周知，微信小程序是一款。。。
-                            众所周知，微信小程序是一款。。。众所周知，微信小程序是一款。。。
-                            众所周知，微信小程序是一款。。。众所周知，微信小程序是一款。。。
-                            众所周知，微信小程序是一款。。。
+                            { todo.content }
                         </div>
                         <div className='card-footer'>
-                            <Button type='primary' size='mini' onClick={buttonClick} className='button'>Solid</Button>
+                            <Button size='mini' onClick={buttonClick} className='button' 
+                              style={{
+                                margin: 8,
+                                '--nutui-button-default-border-color': '#5d6fbb',
+                                '--nutui-button-default-color': '#fff',
+                                '--nutui-button-default-background-color': '#5d6fbb',
+                              }}>编辑</Button>
                         </div>
                     </div>
                 </div>
@@ -49,10 +55,10 @@ export default function Collapse() {
                 <div className='main-unclicked' onClick={handleClick}>
                     <div className='color-tag'></div>
                     <div className='content'>
-                        <div className='head'>微信小程序大作业</div>
-                        <div className='body'>摆烂！</div>
+                        <div className='head'>{ todo.topic }</div>
+                        <div className='body'>{ todo.content }</div>
                     </div>
-                    <div className='time'>02-17</div>
+                    <div className='time'>{ todo.deadline }</div>
                 </div>
             );
         }
